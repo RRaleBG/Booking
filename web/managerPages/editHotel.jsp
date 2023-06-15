@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="../style.css" type="text/css"/>  
 <%  // AUTORIZACIJA 
    user = (Users) session.getAttribute ("user");
+
    int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
+
    UsersDAL ident = new UsersDAL (Konekcija.createConnection ());
 
    if (user == null)
@@ -33,13 +35,22 @@
    }
 %>
 <div class="container mt-3 py-3">
+
+    <%   String e = (String) request.getAttribute ("obavestenje");
+       if (e != null)
+       {
+    %>
+    <h2 class="card-header border-0 text-danger bg-transparent mt-2">
+	<%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
+    </h2>
+    <%}%>
     <div class="card bg-glass border-0 py-3">
 	<h2 class="card-header border-0 bg-transparent text-center"> ${hotel.name} </h2>	
 	<div class="card-body px-2 py-2">
 	    <form action="../EditHotel" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 		<div class="row">
-		    <div class="col-md-4">
-			<label class="col-md-8">Hotel ID: ${hotel.idHotel}</label>
+		    <div class="col-md-4 mt-5">
+			<input type="hidden" name="idHotel" value="${hotel.idHotel}"/>
 			<!--  NAME input -->
 			<div class="col-md-10 mb-3">
 			    <div class="form-outline text-center">
@@ -89,7 +100,7 @@
 			    </div>
 			    <!-- Upload image input-->
 			    <div class="input-group rounded-pill justify-content-center py-5 px-5 mb-0">
-				<input id="imgInp" accept="image/*" name="imagePath" type="file" class="form-control border-0 rounded-pill" required>
+				<input id="imgInp" accept="image/*" name="imagePath" type="file" class="form-control border-0 rounded-pill" >
 				<label id="upload-label" for="imgInp" class="font-weight-light text-muted">  </label> 
 				<input type="hidden" name="imagePath" value="${hotel.imagePath}" />
 			    </div> 	

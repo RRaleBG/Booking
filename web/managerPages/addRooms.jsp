@@ -34,7 +34,6 @@
    }
 %>
 <div class="container mt-3 py-3">
-
     <%   String e = (String) request.getAttribute ("poruka");
        if (e != null)
        {

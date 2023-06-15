@@ -6,18 +6,11 @@ import java.io.PrintWriter;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.File;
-import java.util.Iterator;
-import java.util.List;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.MultipartConfig;
 import model.Hotel;
 import model.HotelDAL;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+@MultipartConfig
 public class EditHotel extends HttpServlet
 {
 
@@ -32,86 +25,89 @@ public class EditHotel extends HttpServlet
 
    }
 
-   private static final long serialVersionUID = 1;
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-      response.setContentType ("text/html");
-      PrintWriter out = response.getWriter ();
+      String obavestenje = "";
 
-      String file_name = "";
+      int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
+      String name = request.getParameter ("name");
+      String city = request.getParameter ("city");
+      int roomCount = Integer.parseInt (request.getParameter ("roomCount"));
+      int stars = Integer.parseInt (request.getParameter ("stars"));
+      int parking = Integer.parseInt (request.getParameter ("parking"));
 
-      boolean isMultipartContent = ServletFileUpload.isMultipartContent (request);
+      Part part = request.getPart ("imagePath");
+      String fileName = (part == null) ? "" : part.getSubmittedFileName ();
 
-      if (!isMultipartContent)
+      if (name.isEmpty ())
       {
-         return;
+         obavestenje = "Name of Hotel missing!";
+
+         request.setAttribute ("obavestenje", obavestenje);
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editHotel.jsp");
+         rd.forward (request, response);
       }
 
-      FileItemFactory factory = new DiskFileItemFactory ();
-      ServletFileUpload upload = new ServletFileUpload (factory);
-
-      try
+      if (city.isEmpty ())
       {
+         obavestenje = "Name of City missing!";
+         request.setAttribute ("obavestenje", obavestenje);
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editHotel.jsp");
+         rd.forward (request, response);
+      }
 
-         List< FileItem> fields = upload.parseRequest (request);
+      if (stars < 1 || stars > 5)
+      {
+         obavestenje = "Hotel need to have 1 or 5 stars!";
+         request.setAttribute ("obavestenje", obavestenje);
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editHotel.jsp");
+         rd.forward (request, response);
+      }
 
-         Iterator<FileItem> it = fields.iterator ();
+      if (roomCount < 1)
+      {
+         obavestenje = "Room count need a valid number!";
+         request.setAttribute ("obavestenje", obavestenje);
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editHotel.jsp");
+         rd.forward (request, response);
+      }
 
-         if (!it.hasNext ())
+      if (parking < 1 || parking > 150)
+      {
+         obavestenje = "Parking need to have more than 1 and less then 150!";
+         request.setAttribute ("obavestenje", obavestenje);
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editHotel.jsp");
+         rd.forward (request, response);
+      }
+
+      if (idHotel != 0)
+      {
+         Hotel hotel = new Hotel ();
+         HotelDAL hotBaza = new HotelDAL (Konekcija.createConnection ());
+
+         hotel.setIdHotel (idHotel);
+         hotel.setName (name);
+         hotel.setCity (city);
+         hotel.setRoomCount (roomCount);
+         hotel.setStars (stars);
+         hotel.setParking (parking);
+         hotel.setImagePath (fileName);
+
+         try
          {
-            return;
+            hotBaza.editHotel (hotel);
+
+            obavestenje = "Successfully updated hotel!";
+            request.setAttribute ("obavestenje", obavestenje);
+
+            RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/managerPage.jsp");
+            rd.forward (request, response);
          }
-
-
-         while (it.hasNext ())
+         catch (IOException | ServletException e)
          {
-            FileItem fileItem = it.next ();
-
-            boolean isFormField = fileItem.isFormField ();
-
-            if (isFormField)
-            {
-               if (file_name == null)
-               {
-                  if (fileItem.getFieldName ().equals ("imagePath"))
-                  {
-                     file_name = fileItem.getString ();
-                  }
-               }
-            }
-            else
-            {
-               if (fileItem.getSize () > 0)
-               {
-                  fileItem.write (new File (getServletContext ().getRealPath (file_name) + fileItem.getName ()));
-
-                  Hotel hotel = new Hotel ();
-
-                  HotelDAL hotBaza = new HotelDAL (Konekcija.createConnection ());
-
-                  hotel.setName (request.getParameter ("name"));
-                  hotel.setCity (request.getParameter ("city"));
-                  hotel.setRoomCount (Integer.parseInt (request.getParameter ("roomCount")));
-                  hotel.setStars (Integer.parseInt (request.getParameter ("stars")));
-                  hotel.setParking (Integer.parseInt (request.getParameter ("parking")));
-                  hotel.setImagePath (request.getParameter ("imagePath" + fileItem.toString ()));
-
-                  hotBaza.editHotel (hotel);
-               }
-            }
+            e.printStackTrace ();
          }
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace ();
-      }
-      finally
-      {
-         out.println ("<script type='text/javascript'>");
-         out.println ("window.location.href='./index.jsp?filename=" + file_name + "'");
-         out.println ("</script>");
-         out.close ();
       }
    }
 

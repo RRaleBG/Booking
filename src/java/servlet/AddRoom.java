@@ -5,8 +5,6 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.MultipartConfig;
-import model.Hotel;
-import model.HotelDAL;
 import model.Rooms;
 import model.RoomsDAL;
 

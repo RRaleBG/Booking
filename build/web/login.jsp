@@ -11,7 +11,6 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
-
 <div class="overflow-hidden">
     <div class="container px-4 py-lg-5 px-lg-5 text-center text-lg-start my-lg-4 mt-lg-5 my-5">
 	<div class="row gx-lg-5 align-items-center mb-5">

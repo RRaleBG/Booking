@@ -75,6 +75,15 @@
    }
 %>
 <div class="container mt-3 py-3">  
+    <%
+       String e = (String) request.getAttribute ("poruka");
+       if (e != null)
+       {
+    %>
+    <h2 class="card-header border-0 text-danger bg-transparent mt-2">
+	<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
+    </h2>
+    <%}%>
     <div class="card bg-glass border-0 py-3">
 	<form action="../EditRoom" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 	    <div class="row justify-content-center">

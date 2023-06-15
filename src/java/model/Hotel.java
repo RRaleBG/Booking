@@ -1,5 +1,7 @@
 package model;
 
+import java.util.logging.Logger;
+
 public class Hotel
 {
 
@@ -46,6 +48,11 @@ public class Hotel
    public void setRoom(Rooms room)
    {
       this.room = room;
+   }
+
+   public void setIdHotel(int idHotel)
+   {
+      this.idHotel = idHotel;
    }
 
    public int getIdHotel()

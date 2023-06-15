@@ -140,36 +140,44 @@ public class HotelDAL
       return hoteli;
    }
 
-   public boolean editHotel(Hotel hotel)
+   public void editHotel(Hotel hotel)
    {
-      boolean edit = false;
       try
       {
-         String update = "UPDATE hotel set name=?, city=?, roomCount=?, parking=?, stars=?, imgPath=? WHERE idHotel=?";
+         Connection cnn = Konekcija.createConnection ();
 
-         PreparedStatement stmt = this.cnn.prepareStatement (update);
+         String update = "UPDATE hotel set name=?, city=?, roomCount=?, parking=?, stars=?";
 
-         //   idRoom treba dodati
+         if (!hotel.getImagePath ().isEmpty ())
+         {
+            update += ",imagePath=? ";
+         }
+         update += "WHERE idHotel=?";
+
+         PreparedStatement stmt = cnn.prepareStatement (update);
+
          stmt.setString (1, hotel.getName ());
          stmt.setString (2, hotel.getCity ());
          stmt.setString (3, Integer.toString (hotel.getRoomCount ()));
          stmt.setString (4, Integer.toString (hotel.getParking ()));
          stmt.setString (5, Integer.toString (hotel.getStars ()));
-         stmt.setString (6, hotel.getImagePath ());
 
-         if (stmt.executeUpdate () != 0)
+         if (!hotel.getImagePath ().isEmpty ())
          {
-            edit = true;
+            stmt.setString (6, hotel.getImagePath ());
+            stmt.setInt (7, hotel.getIdHotel ());
          }
+         stmt.setInt (6, hotel.getIdHotel ());
+
+         stmt.executeUpdate ();
 
          stmt.close ();
+         cnn.close ();
       }
       catch (SQLException e)
       {
          e.printStackTrace ();
       }
-
-      return edit;
    }
 
    public Hotel getByHotelId(int id)

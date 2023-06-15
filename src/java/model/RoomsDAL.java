@@ -97,7 +97,8 @@ public class RoomsDAL
    {
       try
       {
-         String update = "UPDATE rooms set number=?, bed=?, balkon=?, smoking=?, pets=?, tv=? ";
+         String update = "UPDATE rooms set number=?, bed=?, balkon=?, smoking=?, pets=?, tv=?";
+
          if (!room.getImgPath ().isEmpty ())
          {
             update += ",imgPath=? ";
