@@ -28,16 +28,16 @@
       request.setAttribute ("listaHotela", hotel);
    }
 %>
-<div class="container-fluid w-75">
+<div class="container-fluid w-75 align-items-center">
     <%
        String por = (String) request.getAttribute ("obavestenje");
        if (por != null)
        {
     %>
-    <div class="alert border-1 bg-glass rounded-3 shadow border-danger mt-3 align-items-center" role="alert">
-	<h4 class="text-center text-warning">
+    <div class="alert border-1 bg-glass rounded-3 container shadow border-success mt-3 align-items-center col-md-6" role="alert">
+	<h4 class="text-center text-success">
 	    <%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
-	    <button type="button" class="btn-close offset-2" data-bs-dismiss="alert" aria-label="Close"/>
+	    <button type="button" class="btn-close btn-outline-success offset-2 text-success" data-bs-dismiss="alert" aria-label="Close"/>
 	</h4>
     </div>	
     <%}%>
