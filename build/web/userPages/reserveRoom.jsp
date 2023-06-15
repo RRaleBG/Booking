@@ -1,0 +1,116 @@
+<%-- 
+    Document   : reserveRoom
+    Created on : May 12, 2023, 10:32:40 PM
+    Author     : rale_
+--%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<link rel="stylesheet" href="../style.css" type="text/css"/> 
+<link rel="stylesheet" href="../booking.css" type="text/css"/> 
+<%  //
+   user = (Users) session.getAttribute ("user");
+
+   UsersDAL autorizacija = new UsersDAL (Konekcija.createConnection ());
+
+   if (autorizacija.validate (user) == false)
+   {
+      response.sendRedirect (request.getContextPath () + "/login.jsp");
+   }
+   user = (Users) session.getAttribute ("userId");
+
+   int idRoom = Integer.parseInt (request.getParameter ("idRoom"));
+   int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
+
+   HotelDAL hotelCnn = new HotelDAL (Konekcija.createConnection ());
+   RoomsDAL roomCnn = new RoomsDAL (Konekcija.createConnection ());
+   RezervationsDAL rezCnn = new RezervationsDAL (Konekcija.createConnection ());
+
+   Hotel hotel = (Hotel) request.getAttribute ("idHotel");
+   Rooms room = (Rooms) request.getAttribute ("idRoom");
+   Rezervations rezervation = new Rezervations ();
+
+   roomCnn.getAllRoomsFromHotel (idRoom);
+
+   if (idRoom != 0)
+   {
+      request.setAttribute ("hotelskaSoba", hotelCnn.getByHotelId (idHotel));
+      request.setAttribute ("soba", roomCnn.getRoomFromHotel (idHotel, idRoom));
+      request.setAttribute ("id", user = (Users) session.getAttribute ("userId"));
+   }
+%>
+<style>
+    body {
+       background-image: url(../Slike/Budim.jpg);
+       background-size: cover;
+       background-repeat: no-repeat;
+       height: 100vh;
+    }
+
+    .containera {
+       position: relative;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+
+    .bg-2 {
+       background-attachment: fixed;
+       position: relative;
+       top: 30vh;
+       max-width: 750px;
+       padding: 50px;
+       box-shadow: 0 5px 15px rgba(236, 221, 221, 0.5);
+    }
+
+</style>
+<div class="containera">
+    <div class="bg-glass bg-2 mt-5 shadow shadow-lg">
+
+	<%   String e = (String) request.getAttribute ("poruka");
+           if (e != null)
+           {
+	%>
+	<h2 class="card-header border-0 text-danger bg-glass mt-2">
+	    <%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
+	</h2>
+	<%}%>
+	<form action="../Rezervation" method="POST">
+	    <h2 class="text-white">Hotel ${hotelskaSoba.name} / room: ${soba.number} / id Hotel: ${hotelskaSoba.idHotel}</h2>
+	    <h4 class="text-white mb-5">Your ID: ${id.id} / Name: ${id.username}</h4>    
+	    <input type="hidden" name="idGest" value="${id.id}"/>
+	    <input type="hidden" name="idHotel" value="${hotelskaSoba.idHotel}"/>
+	    <input type="hidden" name="idRoom" value="${soba.idRoom}"/>
+	    <div class="row no-margin">
+		<div class="col-md-3">
+		    <div class="form-group">
+			<span class="form-label">City</span>
+			<input class="form-control shadow" disabled type="text" placeholder="${hotelskaSoba.city}">
+		    </div>
+		</div>
+		<div class="col-md-6">
+		    <div class="row">
+			<div class="col-md-6">
+			    <div class="form-group">
+				<span class="form-label">Check In</span>
+				<input class="form-control shadow" type="date" name="dateCheckIn"  required>
+			    </div>
+			</div>
+			<div class="col-md-6 ">
+			    <div class="form-group">
+				<span class="form-label">Check out</span>
+				<input class="form-control shadow" type="date" name="dateCheckOut" required>
+			    </div>
+			</div>	
+
+		    </div>
+		</div>
+		<div class="col-md-3 mt-4">		 
+		    <input type="submit" value="Book me" class="btn btn-danger shadow"/>
+		</div>
+	    </div>
+	</form>
+    </div>
+</div>
+<%@ include file="../footer.jsp" %>

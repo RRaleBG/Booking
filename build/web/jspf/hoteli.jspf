@@ -1,0 +1,50 @@
+<%-- 
+Jsp - shared content page
+    Document   : Jspf - index
+    Created on : May 6, 2023, 4:44:12 PM
+    Author     : rale_
+--%>
+<%@page import="java.util.Base64"%>
+<%@page import="model.Users"%>
+<%@page import="model.Hotel"%>
+<%@page import="java.util.List"%>
+<%@page import="model.HotelDAL"%>
+<%@page import="baza.Konekcija"%>
+<%@page import="model.UsersDAL"%>
+<%    //
+   UsersDAL autorizacija = new UsersDAL (Konekcija.createConnection ());
+   HotelDAL hotelPodaci = new HotelDAL (Konekcija.createConnection ());
+
+   List<Hotel> hotel = hotelPodaci.getAllHotels ();
+   request.setAttribute ("listaHotela", hotel);
+%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- statusna poruka o uspesnom dodavanju hotela --%>
+<%
+   String e = (String) request.getAttribute ("error");
+   if (e != null)
+   {
+%>
+<div class="alert alert-danger">
+    <h3 class="text-center text-white">
+	<%=request.getAttribute ("error")%>
+    </h3>
+</div>	
+<%}%>
+<div class="container-fluid py-1 px-1 w-75">
+    <c:forEach var="hot" items="${listaHotela}">
+       <div class="card card-deck bg-glass m-2 rounded-3" style="display:inline-block;">
+	   <div class="card-header text-white fw-semibold border-0">
+	       ${hot.name}  
+	       <c:forEach begin="1" step="1"  end="${hot.stars}"> 
+		  <% out.print ("<i class=\"bi bi-star-fill mr-2 float-md-end mt-2\" style=\"color:yellow;\"></i>");%>
+	       </c:forEach>
+	   </div>
+	   <div class="border-0 rounded-2 py-1 px-1">
+	       <a rel="alternate"  href="./userPages/roomsFromHotel.jsp?idHotel=${hot.idHotel}" target="_self">        
+		   <img src="./Slike/${hot.imagePath}" class="object-fit-cover img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 14em; width: 21em;">		   
+	       </a>
+	   </div>   	   
+       </div>
+    </c:forEach> 
+</div>
