@@ -28,8 +28,6 @@ public class HotelDAL
 
       String roomFromHotel = "SELECT `hotel`.*, `rooms`.* FROM `hotel` JOIN `rooms` ON `rooms`.`idHotel` = `hotel`.`idHotel` WHERE `hotel`.`idHotel`=?";
 
-      String getRoom = "SELECT * FROM rooms WHERE idHotel =?";
-
       List<Rooms> rooms = new ArrayList<> ();
 
       try

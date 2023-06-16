@@ -2,8 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Rezervations
-{
+public class Rezervations {
 
    private int idRes;
    private int idRoom;
@@ -15,8 +14,8 @@ public class Rezervations
    private int idGest;
    private String hotelName;
 
-   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, int idHotel, int idGest, String hotelName)
-   {
+   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, int idHotel, int idGest,
+         String hotelName) {
       this.idRes = idRes;
       this.idRoom = idRoom;
       this.dateCheckIn = dateCheckIn;
@@ -27,8 +26,8 @@ public class Rezervations
       this.hotelName = hotelName;
    }
 
-   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, boolean canceledRes, int idHotel, int idGest)
-   {
+   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, boolean canceledRes, int idHotel,
+         int idGest) {
       this.idRes = idRes;
       this.dateCheckIn = dateCheckIn;
       this.dateCheckOut = dateCheckOut;
@@ -38,93 +37,75 @@ public class Rezervations
       this.idGest = idGest;
    }
 
-   public String getHotelName()
-   {
+   public String getHotelName() {
       return hotelName;
    }
 
-   public void setHotel(String hotelName)
-   {
+   public void setHotel(String hotelName) {
       this.hotelName = hotelName;
    }
 
-   public int getIdRoom()
-   {
+   public int getIdRoom() {
       return idRoom;
    }
 
-   public void setIdRoom(int idRoom)
-   {
+   public void setIdRoom(int idRoom) {
       this.idRoom = idRoom;
    }
 
-   public int getIdRes()
-   {
+   public int getIdRes() {
       return idRes;
    }
 
-   public Date getDateCheckIn()
-   {
+   public Date getDateCheckIn() {
       return dateCheckIn;
    }
 
-   public void setDateCheckIn(Date dateCheckIn)
-   {
+   public void setDateCheckIn(Date dateCheckIn) {
       this.dateCheckIn = dateCheckIn;
    }
 
-   public Date getDateCheckOut()
-   {
+   public Date getDateCheckOut() {
       return dateCheckOut;
    }
 
-   public void setDateCheckOut(Date dateCheckOut)
-   {
+   public void setDateCheckOut(Date dateCheckOut) {
       this.dateCheckOut = dateCheckOut;
    }
 
-   public int getPrice()
-   {
+   public int getPrice() {
       return price;
    }
 
-   public void setPrice(int price)
-   {
+   public void setPrice(int price) {
       this.price = price;
    }
 
-   public boolean isCanceledRes()
-   {
+   public boolean isCanceledRes() {
       return canceledRes;
    }
 
-   public void setCanceledRes(boolean canceledRes)
-   {
+   public void setCanceledRes(boolean canceledRes) {
       this.canceledRes = canceledRes;
    }
 
-   public int getIdHotel()
-   {
+   public int getIdHotel() {
       return idHotel;
    }
 
-   public void setIdHotel(int idHotel)
-   {
+   public void setIdHotel(int idHotel) {
       this.idHotel = idHotel;
    }
 
-   public int getIdGest()
-   {
+   public int getIdGest() {
       return idGest;
    }
 
-   public void setIdGest(int idGest)
-   {
+   public void setIdGest(int idGest) {
       this.idGest = idGest;
    }
 
-   public Rezervations()
-   {
+   public Rezervations() {
 
    }
 

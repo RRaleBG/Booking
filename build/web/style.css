@@ -1,0 +1,125 @@
+body{
+   background-color: hsl(218, 41%, 15%);
+   background-image: radial-gradient(900px circle at 0% 0%,
+      hsl(218, 41%, 35%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%),
+      radial-gradient(1200px circle at 100% 100%,
+      hsl(218, 41%, 45%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%);
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
+.gradient-custom-2 {
+   /* fallback for old browsers */
+   background: #fccb90;
+
+   /* Chrome 10-25, Safari 5.1-6 */
+   background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+
+@media (min-width: 768px) {
+   .gradient-form {
+      height: 100vh !important;
+   }
+}
+@media (min-width: 900px) {
+   .gradient-custom-2 {
+      border-top-right-radius: .3rem;
+      border-bottom-right-radius: .3rem;
+   }
+}
+
+.background-radial-gradient {
+
+   background-color: hsl(218, 41%, 15%);
+   background-image: radial-gradient(950px circle at 0% 0%,
+      hsl(218, 41%, 35%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%),
+      radial-gradient(1250px circle at 100% 100%,
+      hsl(218, 41%, 45%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%);
+}
+
+#radius-shape-1 {
+   border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+   height: 250px;
+   width: 250px;
+   top: -60px;
+   left: -100px;
+   background: linear-gradient(45deg, #00ffb6 0%, #000fa3 100%);
+   overflow: hidden;
+   animation: liquid-shape-1 8s ease-in-out infinite;
+}
+
+#radius-shape-2 {
+   border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+   bottom: -60px;
+   right: -110px;
+   width: 300px;
+   height: 300px;
+   background: radial-gradient(#44006b, #ad1fff);
+   overflow: hidden;
+
+   animation: liquid-shape-2 8s ease-in-out infinite;
+}
+
+@keyframes liquid-shape-1 {
+
+   0%{
+      border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;
+      background-size:100% 100%;
+   }
+   50%{
+      border-radius:30% 60% 70% 40% / 50% 60% 30% 60%;
+      background-size:400% 150%;
+   }
+   100%{
+      border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;
+      background-size:100% 100%;
+   }
+}
+
+@keyframes liquid-shape-2 {
+
+   100%{
+      border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;
+      background-size:100% 100%;
+   }
+   50%{
+      border-radius:30% 60% 70% 40% / 50% 60% 30% 60%;
+      background-size:350% 150%;
+   }
+   0%{
+      border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;
+      background-size:100% 100%;
+   }
+}
+
+
+.bg-glass {
+
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255,255,255,0));
+   backdrop-filter: blur(15px);
+   -webkit-backdrop-filter: blur(15px);
+   border-radius:20px;
+   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+   color: white;
+}
+
