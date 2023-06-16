@@ -27,6 +27,7 @@ public class EditRoom extends HttpServlet
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
       HttpSession session = request.getSession ();
+      String obavestenje = "";
 
       int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
       int idRoom = Integer.parseInt (request.getParameter ("idRoom"));
@@ -40,7 +41,6 @@ public class EditRoom extends HttpServlet
       Part part = request.getPart ("imgPath");
       String fileName = (part == null) ? "" : part.getSubmittedFileName ();
 
-      String poruka = "";
 
       try
       {
@@ -59,10 +59,11 @@ public class EditRoom extends HttpServlet
 
          editRoom.editRoom (room);
 
-         poruka = "Successfully updated room!";
-         session.setAttribute ("poruka", poruka);
+         obavestenje = "Successfully updated room!";
+         session.setAttribute ("obavestenje", obavestenje);
 
-         response.sendRedirect (request.getHeader ("Referer"));
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editRooms.jsp?idHotel=" + idHotel + "&idRoom=" + idRoom);
+         rd.forward (request, response);
       }
       catch (Exception e)
       {

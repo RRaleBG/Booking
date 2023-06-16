@@ -39,15 +39,15 @@
    }
 %>
 <div class="container py-3">
-    <%   String e = (String) request.getAttribute ("poruka");
+    <%  String e = (String) request.getAttribute ("poruka");
        if (e != null)
        {
     %>
-    <h2 class="card-header border-0 text-danger bg-transparent mt-2">
+    <h4 class="alert mt-3 shadow border-1 bg-glass text-center text-success color-success border-success">
 	<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
-    </h2>
+	<button type="button" class="btn-close btn-outline-success offset-1 text-success" data-bs-dismiss="alert" aria-label="Close"/>
+    </h4>
     <%}%>
-
     <!-- USER DETAILS -->
     <div class="row mt-4">
 	<div class="col-lg-4">

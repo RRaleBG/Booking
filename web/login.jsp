@@ -1,14 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : May 6, 2023, 6:34:54 PM
-    Author     : rale_
-
-<jsp:useBean id="idUser" scope="application" class="model.Users"/>
-<jsp:useBean id="idUserDAL" scope="application" class="model.UsersDAL"/>
-<c:set var="idUser" value="${param.idUser}"/>
-<c:set var="idUserDAL" value="${param.idUserDAL}"/>
-
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 <div class="overflow-hidden">

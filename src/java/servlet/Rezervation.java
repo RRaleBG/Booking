@@ -2,14 +2,7 @@ package servlet;
 
 import baza.Konekcija;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -59,7 +52,7 @@ public class Rezervation extends HttpServlet
       if (baza.addReservation (rez))
       {
 
-         poruka = "Congratulations for your bookin, have a nice holidey!";
+         poruka = "Congratulations, have a nice holiday!";
 
          request.setAttribute ("poruka", poruka);
          RequestDispatcher rd = request.getRequestDispatcher ("/userPages/userPage.jsp");
@@ -73,13 +66,6 @@ public class Rezervation extends HttpServlet
          response.sendRedirect ("userPages/reserveRoom.jsp?idRoom=" + idRoom + "&idHotel=" + idHotel);
 
       }
-
-      System.out.println ("dateCheckIn: " + dateCheckIn);
-      System.out.println ("dateCheckOut: " + dateCheckOut);
-
-      System.out.println (" idGest:" + idGest);
-      System.out.println (" idHotel:" + idHotel);
-      System.out.println (" idRoom: " + idRoom);
    }
 
    //

@@ -67,14 +67,17 @@
 </style>
 <div class="containera">
     <div class="bg-glass bg-2 mt-5 shadow shadow-lg">
-
-	<%   String e = (String) request.getAttribute ("poruka");
-           if (e != null)
-           {
+	<%
+	   String por = (String) request.getAttribute ("poruka");
+	   if (por != null)
+	   {
 	%>
-	<h2 class="card-header border-0 text-danger bg-glass mt-2">
-	    <%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
-	</h2>
+	<div class="alert border-1 bg-glass rounded-3 container shadow border-danger mt-3 align-items-center col-md-6" role="alert">
+	    <h4 class="text-center text-success">
+		<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
+		<button type="button" class="btn-close btn-outline-danger offset-1 text-danger" data-bs-dismiss="alert" aria-label="Close"/>
+	    </h4>
+	</div>	
 	<%}%>
 	<form action="../Rezervation" method="POST">
 	    <h2 class="text-white">Hotel ${hotelskaSoba.name} / room: ${soba.number} / id Hotel: ${hotelskaSoba.idHotel}</h2>

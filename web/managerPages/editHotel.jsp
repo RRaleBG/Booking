@@ -35,14 +35,17 @@
    }
 %>
 <div class="container mt-3 py-3">
-
-    <%   String e = (String) request.getAttribute ("obavestenje");
-       if (e != null)
+    <%
+       String por = (String) request.getAttribute ("obavestenje");
+       if (por != null)
        {
     %>
-    <h2 class="card-header border-0 text-danger bg-transparent mt-2">
-	<%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
-    </h2>
+    <div class="alert border-1 bg-glass rounded-3 container shadow border-success mt-3 align-items-center col-md-6" role="alert">
+	<h4 class="text-center text-success">
+	    <%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
+	    <button type="button" class="btn-close btn-outline-success offset-2 text-success" data-bs-dismiss="alert" aria-label="Close"/>
+	</h4>
+    </div>	
     <%}%>
     <div class="card bg-glass border-0 py-3">
 	<h2 class="card-header border-0 bg-transparent text-center"> ${hotel.name} </h2>	

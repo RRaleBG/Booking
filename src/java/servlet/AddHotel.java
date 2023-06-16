@@ -117,6 +117,7 @@ public class AddHotel extends HttpServlet
 
             obavestenje = "Successfully added new hotel!";
             request.setAttribute ("obavestenje", obavestenje);
+
             RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/managerPage.jsp");
             rd.forward (request, response);
          }

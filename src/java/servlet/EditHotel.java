@@ -2,10 +2,8 @@ package servlet;
 
 import baza.Konekcija;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.io.File;
 import javax.servlet.annotation.MultipartConfig;
 import model.Hotel;
 import model.HotelDAL;

@@ -75,13 +75,12 @@
    }
 %>
 <div class="container mt-3 py-3">  
-    <%
-       String e = (String) request.getAttribute ("poruka");
+    <%   String e = (String) request.getAttribute ("obavestenje");
        if (e != null)
        {
     %>
     <h2 class="card-header border-0 text-danger bg-transparent mt-2">
-	<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
+	<%= request.getAttribute ("obavestenje") == null ? request.getAttribute ("obavestenje") : " "%>
     </h2>
     <%}%>
     <div class="card bg-glass border-0 py-3">

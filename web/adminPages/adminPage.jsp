@@ -33,22 +33,14 @@
 %>
 <div class="container">
 
-    <%
-       String e = (String) request.getAttribute ("obavestenje");
+    <%  String e = (String) request.getAttribute ("obavestenje");
        if (e != null)
        {
     %>
-    <h2 class="alert mt-3 shadow border-1 bg-glass text-center text-success color-success border-success">
+    <h4 class="alert mt-3 shadow border-1 bg-glass text-center text-success color-success border-success">
 	<%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
-
-    </h2>
-    <%}
-    else
-    {%>
-    <h2 class="card-header border-0 text-danger bg-transparent mt-2">
-	<%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
-    </h2>
-    <%}%>
+	<button type="button" class="btn-close btn-outline-success offset-1 text-success" data-bs-dismiss="alert" aria-label="Close"/>
+    </h4>    <%}%>   
     <div class="mt-3 text-info">
 	<table class="table py-5 px-4 table-borderless bg-glass table-hover text-center">
 	    <thead class="text-info border-bottom border-info">

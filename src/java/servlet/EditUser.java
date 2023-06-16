@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.*;
-import static java.lang.System.out;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
