@@ -1,8 +1,6 @@
 package model;
 
-public class Hotel
-{
-
+public class Hotel {
    private int idHotel;
    private String name;
    private String city;
@@ -12,12 +10,10 @@ public class Hotel
    private String imagePath;
    Rooms room;
 
-   public Hotel()
-   {
+   public Hotel() {
    }
 
-   public Hotel(String name, String city, int roomCount, int parking, int stars, String imagePath, Rooms room)
-   {
+   public Hotel(String name, String city, int roomCount, int parking, int stars, String imagePath, Rooms room) {
       this.name = name;
       this.city = city;
       this.roomCount = roomCount;
@@ -27,8 +23,7 @@ public class Hotel
       this.room = room;
    }
 
-   public Hotel(int idHotel, String name, String city, int roomCount, int parking, int stars, String imagePath)
-   {
+   public Hotel(int idHotel, String name, String city, int roomCount, int parking, int stars, String imagePath) {
       this.idHotel = idHotel;
       this.name = name;
       this.city = city;
@@ -38,78 +33,67 @@ public class Hotel
       this.imagePath = imagePath;
    }
 
-   public Rooms getRoom()
-   {
+   public Rooms getRoom() {
       return room;
    }
 
-   public void setRoom(Rooms room)
-   {
+   public void setRoom(Rooms room) {
       this.room = room;
    }
 
-   public int getIdHotel()
-   {
+   public void setIdHotel(int idHotel) {
+      this.idHotel = idHotel;
+   }
+
+   public int getIdHotel() {
       return idHotel;
    }
 
-   public String getName()
-   {
+   public String getName() {
       return name;
    }
 
-   public void setName(String name)
-   {
+   public void setName(String name) {
       this.name = name;
    }
 
-   public String getCity()
-   {
+   public String getCity() {
       return city;
    }
 
-   public void setCity(String city)
-   {
+   public void setCity(String city) {
       this.city = city;
    }
 
-   public int getRoomCount()
-   {
+   public int getRoomCount() {
       return roomCount;
    }
 
-   public void setRoomCount(int roomCount)
-   {
+   public void setRoomCount(int roomCount) {
       this.roomCount = roomCount;
    }
 
-   public int getParking()
-   {
+   public int getParking() {
       return parking;
    }
 
-   public void setParking(int parking)
-   {
+   public void setParking(int parking) {
       this.parking = parking;
    }
 
-   public int getStars()
-   {
+   public int getStars() {
       return stars;
    }
 
-   public void setStars(int stars)
-   {
+   public void setStars(int stars) {
       this.stars = stars;
    }
 
-   public String getImagePath()
-   {
+   public String getImagePath() {
       return imagePath;
    }
 
-   public void setImagePath(String imagePath)
-   {
+   public void setImagePath(String imagePath) {
       this.imagePath = imagePath;
    }
 

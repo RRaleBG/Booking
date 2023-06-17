@@ -1,8 +1,4 @@
-<%-- 
-    Document   : roomsFromHotel
-    Created on : May 23, 2023, 8:20:26 PM
-    Author     : rale_
---%>
+<!DOCTYPE>
 <%@page import="baza.Konekcija"%>
 <%@page import="java.util.List"%>
 <%@page import="model.*" %>

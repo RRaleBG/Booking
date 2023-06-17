@@ -3,6 +3,7 @@
     Created on : May 6, 2023, 6:38:10 PM
     Author     : rale_
 --%>
+<!DOCTYPE>
 <%@page import="model.UsersDAL"%>
 <jsp:useBean id="obj" class="model.Users"/>
 <jsp:setProperty property="*" name="obj"/>
@@ -25,8 +26,6 @@
 		<div id="radius-shape-1" class="position-absolute shadow-5-strong"></div>
 		<div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 		<div class="card bg-glass">
-
-
 		    <%   String e = (String) request.getAttribute ("poruka");
                        if (e != null)
                        {
@@ -35,8 +34,6 @@
 			<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
 		    </h3>
 		    <%}%>
-
-
 		    <h2 class="card-header border-0 bg-transparent mt-2">Register </h2>
 		    <div class="card-body px-4 py-4">
 			<!-- REGISTRACIJA -->
@@ -146,10 +143,10 @@
 	 }, false)
       })
    })()
+</script>
 
-
-
-   $(document).ready(function() {
+<script>
+   $(document).ready(function() {  }
    $("#validationCustom01").keypress(function (e)
    {
    //if the letter is not digit then display error and don't type anything
@@ -159,9 +156,23 @@
    $("#errmsg").html("Digits Only").show().fadeOut("slow");
 	   return false;
    }
-   })
-   ;
+   });</script>
 
-
+<script type="text/javascript">
+	   function ValidateEmail(emailId)
+	   {
+	   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		   if (emailId.value.match(mailformat))
+	   {
+	   document.getElementById('password').focus();
+		   return true;
+	   }
+	   else
+	   {
+	   alert("You have entered an invalid email address!");
+		   document.getElementById('emailId').focus();
+		   return false;
+	   }
+	   }
 </script>
 <%@ include file="footer.jsp" %>

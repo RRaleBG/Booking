@@ -1,8 +1,4 @@
-<%-- 
-    Document   : addHotel
-    Created on : May 12, 2023, 9:55:11 PM
-    Author     : rale_
---%>
+<!DOCTYPE>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" href="../style.css" type="text/css"/>  
@@ -23,7 +19,6 @@
       session.setAttribute ("user", user);
    }
 %>
-
 <div class="container mt-3 py-3">
     <%
        String por = (String) request.getAttribute ("obavestenje");

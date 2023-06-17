@@ -1,21 +1,4 @@
-<%-- 
-    Document   : detailUser
-    Created on : May 12, 2023, 9:57:25 PM
-    Author     : rale
-
-
-    <jsp:useBean id="idUser" class="model.Users"/>
-    <jsp:useBean id="idUserDAL" class="model.UsersDAL"/>
-
-    <c:set var="idUser" value="${param.idUser}"/> 
-    <c:set var="idUserDAL" value="${param.idUserDAL}"/>
-
-
-    <c:forEach var="a" items="${idUserDAL.allUsers()}">
-       <input type="text" name="id" value="${idUser.username}"/>
-    </c:forEach>
-
---%>
+<!DOCTYPE>
 <%@page import="baza.Konekcija"%>
 <%@page import="java.util.List"%>
 <%@page import="model.*" %>
@@ -35,10 +18,8 @@
    request.setAttribute ("rola", idRola);
 
    RezervationsDAL rez = new RezervationsDAL (Konekcija.createConnection ());
-
    List<Rezervations> listRezervation = rez.getAllRezervationsFromUserId (id);
    request.setAttribute ("listaRez", listRezervation);
-
 %>
 <div class="container py-3">   
     <div class="row mt-4  gap-5 mr-3">      

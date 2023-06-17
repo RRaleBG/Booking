@@ -1,3 +1,4 @@
+<!DOCTYPE>
 <%-- 
     Document   : editHotel
     Created on : May 12, 2023, 9:55:00 PM
@@ -11,7 +12,9 @@
 <link rel="stylesheet" href="../style.css" type="text/css"/>  
 <%  // AUTORIZACIJA 
    user = (Users) session.getAttribute ("user");
+
    int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
+
    UsersDAL ident = new UsersDAL (Konekcija.createConnection ());
 
    if (user == null)
@@ -33,13 +36,25 @@
    }
 %>
 <div class="container mt-3 py-3">
+    <%
+       String por = (String) request.getAttribute ("obavestenje");
+       if (por != null)
+       {
+    %>
+    <div class="alert border-1 bg-glass rounded-3 container shadow border-success mt-3 align-items-center col-md-6" role="alert">
+	<h4 class="text-center text-success">
+	    <%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
+	    <button type="button" class="btn-close btn-outline-success offset-2 text-success" data-bs-dismiss="alert" aria-label="Close"/>
+	</h4>
+    </div>	
+    <%}%>
     <div class="card bg-glass border-0 py-3">
 	<h2 class="card-header border-0 bg-transparent text-center"> ${hotel.name} </h2>	
 	<div class="card-body px-2 py-2">
 	    <form action="../EditHotel" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 		<div class="row">
-		    <div class="col-md-4">
-			<label class="col-md-8">Hotel ID: ${hotel.idHotel}</label>
+		    <div class="col-md-4 mt-5">
+			<input type="hidden" name="idHotel" value="${hotel.idHotel}"/>
 			<!--  NAME input -->
 			<div class="col-md-10 mb-3">
 			    <div class="form-outline text-center">
@@ -89,7 +104,7 @@
 			    </div>
 			    <!-- Upload image input-->
 			    <div class="input-group rounded-pill justify-content-center py-5 px-5 mb-0">
-				<input id="imgInp" accept="image/*" name="imagePath" type="file" class="form-control border-0 rounded-pill" required>
+				<input id="imgInp" accept="image/*" name="imagePath" type="file" class="form-control border-0 rounded-pill" >
 				<label id="upload-label" for="imgInp" class="font-weight-light text-muted">  </label> 
 				<input type="hidden" name="imagePath" value="${hotel.imagePath}" />
 			    </div> 	

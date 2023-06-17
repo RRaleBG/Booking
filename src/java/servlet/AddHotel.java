@@ -93,7 +93,6 @@ public class AddHotel extends HttpServlet
       {
          try
          {
-
             String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Projekti/Booking/web/Slike/" + imageName;
 
             FileOutputStream upload = new FileOutputStream (folderSlika);
@@ -118,6 +117,7 @@ public class AddHotel extends HttpServlet
 
             obavestenje = "Successfully added new hotel!";
             request.setAttribute ("obavestenje", obavestenje);
+
             RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/managerPage.jsp");
             rd.forward (request, response);
          }

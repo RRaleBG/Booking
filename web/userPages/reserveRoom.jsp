@@ -1,14 +1,9 @@
-<%-- 
-    Document   : reserveRoom
-    Created on : May 12, 2023, 10:32:40 PM
-    Author     : rale_
---%>
+<!DOCTYPE>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" href="../style.css" type="text/css"/> 
-<link rel="stylesheet" href="../booking.css" type="text/css"/> 
 <%  //
    user = (Users) session.getAttribute ("user");
 
@@ -45,14 +40,15 @@
        background-image: url(../Slike/Budim.jpg);
        background-size: cover;
        background-repeat: no-repeat;
-       height: 100vh;
+       height: 100%;
     }
 
-    .containera {
+    .container{
        position: relative;
        display: flex;
        justify-content: center;
        align-items: center;
+       z-index: 1000;
     }
 
     .bg-2 {
@@ -63,18 +59,20 @@
        padding: 50px;
        box-shadow: 0 5px 15px rgba(236, 221, 221, 0.5);
     }
-
 </style>
-<div class="containera">
+<div class="container">
     <div class="bg-glass bg-2 mt-5 shadow shadow-lg">
-
-	<%   String e = (String) request.getAttribute ("poruka");
-           if (e != null)
+	<%
+           String por = (String) request.getAttribute ("poruka");
+           if (por != null)
            {
 	%>
-	<h2 class="card-header border-0 text-danger bg-glass mt-2">
-	    <%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
-	</h2>
+	<div class="alert border-1 bg-glass rounded-3 container shadow border-danger mt-3 align-items-center col-md-6" role="alert">
+	    <h4 class="text-center text-success">
+		<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
+		<button type="button" class="btn-close btn-outline-danger offset-1 text-danger" data-bs-dismiss="alert" aria-label="Close"/>
+	    </h4>
+	</div>	
 	<%}%>
 	<form action="../Rezervation" method="POST">
 	    <h2 class="text-white">Hotel ${hotelskaSoba.name} / room: ${soba.number} / id Hotel: ${hotelskaSoba.idHotel}</h2>

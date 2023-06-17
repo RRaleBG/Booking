@@ -1,17 +1,6 @@
-<%-- 
-    Document   : login
-    Created on : May 6, 2023, 6:34:54 PM
-    Author     : rale_
-
-<jsp:useBean id="idUser" scope="application" class="model.Users"/>
-<jsp:useBean id="idUserDAL" scope="application" class="model.UsersDAL"/>
-<c:set var="idUser" value="${param.idUser}"/>
-<c:set var="idUserDAL" value="${param.idUserDAL}"/>
-
---%>
+<!DOCTYPE>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
-
 <div class="overflow-hidden">
     <div class="container px-4 py-lg-5 px-lg-5 text-center text-lg-start my-lg-4 mt-lg-5 my-5">
 	<div class="row gx-lg-5 align-items-center mb-5">

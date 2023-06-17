@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import model.RoomsDAL;
+import model.Rooms;
 
 @MultipartConfig
 public class EditRoom extends HttpServlet
@@ -25,6 +26,8 @@ public class EditRoom extends HttpServlet
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
+      HttpSession session = request.getSession ();
+      String obavestenje = "";
 
       int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
       int idRoom = Integer.parseInt (request.getParameter ("idRoom"));
@@ -38,12 +41,11 @@ public class EditRoom extends HttpServlet
       Part part = request.getPart ("imgPath");
       String fileName = (part == null) ? "" : part.getSubmittedFileName ();
 
-      String poruka = "";
 
       try
       {
          RoomsDAL editRoom = new RoomsDAL (Konekcija.createConnection ());
-         model.Rooms room = new model.Rooms ();
+         Rooms room = new Rooms ();
 
          room.setIdRoom (idRoom);
          room.setIdHotel (idHotel);
@@ -57,11 +59,11 @@ public class EditRoom extends HttpServlet
 
          editRoom.editRoom (room);
 
-         poruka = "Successfully updated room!";
+         obavestenje = "Successfully updated room!";
+         session.setAttribute ("obavestenje", obavestenje);
 
-         request.setAttribute ("poruka", poruka);
-
-         response.sendRedirect (request.getHeader ("Referer"));
+         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editRooms.jsp?idHotel=" + idHotel + "&idRoom=" + idRoom);
+         rd.forward (request, response);
       }
       catch (Exception e)
       {

@@ -15,16 +15,8 @@
         <servlet-class>servlet.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Admin</servlet-name>
-        <servlet-class>servlet.Admin</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>EditUser</servlet-name>
         <servlet-class>servlet.EditUser</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DetailUser</servlet-name>
-        <servlet-class>servlet.DetailUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Rezervation</servlet-name>
@@ -59,16 +51,8 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Admin</servlet-name>
-        <url-pattern>/Admin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>EditUser</servlet-name>
         <url-pattern>/EditUser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DetailUser</servlet-name>
-        <url-pattern>/DetailUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Rezervation</servlet-name>
