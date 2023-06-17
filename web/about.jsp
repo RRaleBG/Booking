@@ -1,3 +1,5 @@
+
+<!DOCTYPE>
 <%@page import="baza.Konekcija"%>
 <%@page import="java.util.List"%>
 <%@page import="model.*" %>

@@ -1,8 +1,4 @@
-<%-- 
-    Document   : contact
-    Created on : May 8, 2023, 11:20:45 AM
-    Author     : rale_
---%>
+<!DOCTYPE>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 <div class="container mb-4 py-3">

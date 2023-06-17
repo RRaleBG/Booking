@@ -1,3 +1,4 @@
+<!DOCTYPE>
 <%-- 
     Document   : addRooms
     Created on : May 12, 2023, 9:55:42 PM

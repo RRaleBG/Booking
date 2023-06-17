@@ -3,6 +3,7 @@
     Created on : May 12, 2023, 9:59:53 PM
     Author     : rale_
 --%>
+<!DOCTYPE>
 <%@page import="java.util.List"%>
 <%@page import="model.Users" %>
 <%@page import="model.UsersDAL" %>

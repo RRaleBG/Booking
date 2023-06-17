@@ -1,3 +1,4 @@
+<!DOCTYPE>
 <%-- 
     Document   : deleteHotel
     Created on : May 15, 2023, 12:11:43 AM

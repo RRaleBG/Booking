@@ -1,8 +1,4 @@
-<%-- 
-    Document   : error
-    Created on : May 6, 2023, 6:27:02 PM
-    Author     : rale_
---%>
+<!DOCTYPE>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page isErrorPage="true" %> 
 <%@ include file="header.jsp" %>
@@ -15,8 +11,7 @@
 	<h1 class="text-danger text-center">Error Page</h1>
 
 
-	<%
-           String ex = (String) request.getAttribute ("exception");
+	<%           String ex = (String) request.getAttribute ("exception");
 
            if (exception != null)
            {

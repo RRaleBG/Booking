@@ -1,34 +1,35 @@
+<!DOCTYPE>
 <div class="col-md-12 text-info mt-5" id="result">
-   <table class="table table-borderless bg-glass table-hover text-center text-info">
-      <thead class="text-info border-bottom border-info">
-         <tr>
-            <th> Id        </th>
-            <th> Username  </th>
-            <th> Firstname </th>  
-            <th> Lastname  </th>   
-            <th> Email     </th>
-            <th> Password  </th>     
-            <th> Points    </th>  
-            <th> Bee smart </th>
-         </tr>
-      </thead>
-      <c:forEach var="i" items="${userLista}">
-         <tbody>
-            <tr class="table-hovered text-light">        
-               <td> ${i.id}        </td>
-               <td> ${i.username}  </td>
-               <td> ${i.firstname} </td>
-               <td> ${i.lastname}  </td>
-               <td> ${i.email}     </td>
-               <td> ${i.password}  </td>
-               <td> ${i.points}    </td>
-               <td>
-                  <a href="editUser.jsp?id=${i.id}" class="mr-3" title="Update" data-toggle="tooltip"><span class="bi bi-pen" style="color: #d900ff; margin-right:10px;"></span></a>
-                  <a href="detailUser.jsp?id=${i.id}" class="mr-3" title="Details" data-toggle="tooltip"><span class="bi bi-book" style="color:#00ff1f; margin-right:10px;"></span></a>
-                  <a href='deleteUser.jsp?id=${i.id}' title='Delete' data-toggle='mymodal'><span class='bi bi-trash' style='color: red;'></span></a>
-               </td>
-            </tr>
-         </tbody>
-      </c:forEach>
-   </table>
+    <table class="table table-borderless bg-glass table-hover text-center text-info">
+	<thead class="text-info border-bottom border-info">
+	    <tr>
+		<th> Id        </th>
+		<th> Username  </th>
+		<th> Firstname </th>  
+		<th> Lastname  </th>   
+		<th> Email     </th>
+		<th> Password  </th>     
+		<th> Points    </th>  
+		<th> Bee smart </th>
+	    </tr>
+	</thead>
+	<c:forEach var="i" items="${userLista}">
+	    <tbody>
+		<tr class="table-hovered text-light">        
+		    <td> ${i.id}        </td>
+		    <td> ${i.username}  </td>
+		    <td> ${i.firstname} </td>
+		    <td> ${i.lastname}  </td>
+		    <td> ${i.email}     </td>
+		    <td> ${i.password}  </td>
+		    <td> ${i.points}    </td>
+		    <td>
+			<a href="editUser.jsp?id=${i.id}" class="mr-3" title="Update" data-toggle="tooltip"><span class="bi bi-pen" style="color: #d900ff; margin-right:10px;"></span></a>
+			<a href="detailUser.jsp?id=${i.id}" class="mr-3" title="Details" data-toggle="tooltip"><span class="bi bi-book" style="color:#00ff1f; margin-right:10px;"></span></a>
+			<a href='deleteUser.jsp?id=${i.id}' title='Delete' data-toggle='mymodal'><span class='bi bi-trash' style='color: red;'></span></a>
+		    </td>
+		</tr>
+	    </tbody>
+	</c:forEach>
+    </table>
 </div>

@@ -1,3 +1,4 @@
+<!DOCTYPE>
 <%-- 
     Document   : editRooms
     Created on : May 12, 2023, 9:55:28 PM

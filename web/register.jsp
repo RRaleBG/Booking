@@ -3,6 +3,7 @@
     Created on : May 6, 2023, 6:38:10 PM
     Author     : rale_
 --%>
+<!DOCTYPE>
 <%@page import="model.UsersDAL"%>
 <jsp:useBean id="obj" class="model.Users"/>
 <jsp:setProperty property="*" name="obj"/>
@@ -145,8 +146,7 @@
 </script>
 
 <script>
-   $(document).ready(function() {
-   }
+   $(document).ready(function() {  }
    $("#validationCustom01").keypress(function (e)
    {
    //if the letter is not digit then display error and don't type anything

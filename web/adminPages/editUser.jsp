@@ -3,6 +3,7 @@
     Created on : May 12, 2023, 9:56:38 PM
     Author     : rale_
 --%>
+<!DOCTYPE>
 <%@page import="baza.Konekcija"%>
 <%@page import="java.util.List"%>
 <%@page import="model.*" %>
