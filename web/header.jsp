@@ -17,7 +17,8 @@
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400" rel="stylesheet">
 	<link rel="stylesheet" href="style.css" type="text/css"/>      
-	<title>Booking</title>	
+	<title>Booking</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>  
     <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-glass rounded-0 sticky-top">
@@ -57,7 +58,6 @@
 				</ul>
 			    </li>
 			</ul>
-
 		    </div>    
 		    <div class="navbar-nav">      
 			<%

@@ -41,7 +41,7 @@ public class AddRoom extends HttpServlet
       {
          String imageName = part.getSubmittedFileName ();
 
-         String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Projekti/Booking/web/Slike/" + imageName;
+         String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Projekti/Booking/web/Slike/Sobe/" + imageName;
 
          FileOutputStream upload = new FileOutputStream (folderSlika);
          InputStream input = part.getInputStream ();

@@ -47,8 +47,8 @@ public class EditRoom extends HttpServlet
          RoomsDAL editRoom = new RoomsDAL (Konekcija.createConnection ());
          Rooms room = new Rooms ();
 
-         room.setIdRoom (idRoom);
          room.setIdHotel (idHotel);
+         room.setIdRoom (idRoom);
          room.setNumber (number);
          room.setBed (bed);
          room.setTv ((byte) tv);
@@ -60,7 +60,7 @@ public class EditRoom extends HttpServlet
          editRoom.editRoom (room);
 
          obavestenje = "Successfully updated room!";
-         session.setAttribute ("obavestenje", obavestenje);
+         request.setAttribute ("obavestenje", obavestenje);
 
          RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editRooms.jsp?idHotel=" + idHotel + "&idRoom=" + idRoom);
          rd.forward (request, response);

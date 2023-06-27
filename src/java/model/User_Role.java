@@ -2,26 +2,25 @@ package model;
 
 public class User_Role
 {
+    private int id;
+    private int idRole;
 
-    private Users id;
-    private Role idRole;
-
-    public Users getId ()
+    public int getId ()
     {
         return id;
     }
 
-    public void setId (Users id)
+    public void setId (int id)
     {
         this.id = id;
     }
 
-    public Role getIdRole ()
+    public int getIdRole ()
     {
         return idRole;
     }
 
-    public void setIdRole (Role idRole)
+    public void setIdRole (int idRole)
     {
         this.idRole = idRole;
     }
@@ -30,10 +29,10 @@ public class User_Role
     {
     }
 
-    public User_Role (Users id, Role idRole)
+  
+    public User_Role (int id, int idRole)
     {
         this.id = id;
         this.idRole = idRole;
     }
-
 }

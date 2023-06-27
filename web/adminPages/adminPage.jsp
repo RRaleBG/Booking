@@ -5,8 +5,7 @@
 --%>
 <!DOCTYPE>
 <%@page import="java.util.List"%>
-<%@page import="model.Users" %>
-<%@page import="model.UsersDAL" %>
+<%@page import="model.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" href="../style.css" type="text/css"/>  
@@ -32,8 +31,7 @@
       request.setAttribute ("userLista", lista);
    }
 %>
-<div class="container">
-
+<div class="container-fluid w-75">
     <%  String e = (String) request.getAttribute ("obavestenje");
        if (e != null)
        {
@@ -41,41 +39,42 @@
     <h4 class="alert mt-3 shadow border-1 bg-glass text-center text-success color-success border-success">
 	<%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
 	<button type="button" class="btn-close btn-outline-success offset-1 text-success" data-bs-dismiss="alert" aria-label="Close"/>
-    </h4>    <%}%>   
-    <div class="mt-3 text-info">
-	<table class="table py-5 px-4 table-borderless bg-glass table-hover text-center">
-	    <thead class="text-info border-bottom border-info">
-		<tr class="">
-		    <th> Id        </th>
-		    <th> Username  </th>
-		    <th> First name </th>  
-		    <th> Last name  </th>   
-		    <th> Email     </th>
-		    <th> Password  </th>  
-		    <th> Points    </th>  
-		    <th> Bee smart </th>
-		</tr>
-	    </thead>
-	    <c:forEach var="i" items="${userLista}">
-	       <tbody>
-		   <tr class="text-light py-3">        
-		       <td> ${i.id}        </td>
-		       <td> ${i.username}  </td>
-		       <td> ${i.firstname} </td>
-		       <td> ${i.lastname}  </td>
-		       <td> ${i.email}     </td>
-		       <td> ${i.password}  </td>
-		       <td> ${i.points}    </td>
-		       <td>
-			   <a href="<%=request.getContextPath ()%>/adminPages/editUser.jsp?id=${i.id}" class="mr-3 bi bi-pen" title="Update" data-toggle="tooltip"></a>
-			   <a href="<%=request.getContextPath ()%>/adminPages/detailUser.jsp?id=${i.id}" class="mr-3 bi bi-book" title="Details" style='color:#00ff1f;' data-toggle="tooltip"></a>				   
-			   <a href="<%=request.getContextPath ()%>/adminPages/deleteUser.jsp?id=${i.id}" title='Delete' class="bi bi-trash" data-toggle='mymodal' style='color: red;'></a>     
-		       </td>
-		   </tr>
-	       </tbody>
-	    </c:forEach>
-	</table>
-    </div>
+    </h4>    
+    <%}%>   
+    <table class="table table-borderless table-hover shadow-md text-xsmall mt-4 py-5 bg-glass text-center mx-auto">
+	<thead class="text-info border-bottom border-info p-3">
+	    <tr>
+		<th> Id        </th>
+		<th> Username  </th>
+		<th> First name </th>  
+		<th> Last name  </th>   
+		<th> Email     </th>
+		<th> Password  </th>  
+		<th> Points    </th>  
+		<th> Bee smart </th>
+	    </tr>
+	</thead>
+	<c:forEach var="i" items="${userLista}">
+
+	   <tbody>
+	       <tr class="text-light py-3">        
+		   <td> ${i.id}        </td>		       
+		   <td> ${i.username}  </td>
+		   <td> ${i.firstname} </td>
+		   <td> ${i.lastname}  </td>
+		   <td> ${i.email}     </td>
+		   <td> ${i.password}  </td>
+		   <td> ${i.points}    </td>		
+		   <td>
+		       <a href="<%=request.getContextPath ()%>/adminPages/editUser.jsp?id=${i.id}" class="bi bi-pen" title="Update" data-toggle="tooltip"></a>
+		       <a href="<%=request.getContextPath ()%>/adminPages/detailUser.jsp?id=${i.id}" class="bi bi-book ml-2" title="Details" style='color:#00ff1f;' data-toggle="tooltip"></a>				   
+		       <a href="<%=request.getContextPath ()%>/adminPages/deleteUser.jsp?id=${i.id}" title='Delete' class="bi bi-trash ml-2" data-toggle='mymodal' style='color: red;'></a>     
+		   </td>
+	       </tr>
+	   </tbody>
+	</c:forEach>
+    </table>
+
 </div>
 <%-- AJAX za live pretragu --%>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js">

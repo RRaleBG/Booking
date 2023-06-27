@@ -2,7 +2,6 @@ package model;
 
 import java.sql.*;
 import baza.Konekcija;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +70,7 @@ public class UsersDAL
          Connection cnn = Konekcija.createConnection ();
 
          String login = "SELECT * FROM users WHERE username=? AND password=?";
-         PreparedStatement stmt = cnn.prepareCall (login);
+         PreparedStatement stmt = cnn.prepareStatement(login);
 
          if (user != null)
          {
@@ -370,6 +369,7 @@ public class UsersDAL
          Connection cnn = Konekcija.createConnection ();
 
          PreparedStatement stmt = cnn.prepareCall ("SELECT * FROM users WHERE username=?");
+         
          stmt.setString (1, userName);
 
          ResultSet rez = stmt.executeQuery ();

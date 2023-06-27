@@ -97,15 +97,15 @@ public class RoomsDAL
    {
       try
       {
-         String update = "UPDATE rooms set number=?, bed=?, balkon=?, smoking=?, pets=?, tv=?";
+         String update = "UPDATE rooms set number=?, bed=?, balkon=?, smoking=?, pets=?, tv=? ";
 
          if (!room.getImgPath ().isEmpty ())
          {
             update += ",imgPath=? ";
          }
-         update += "WHERE idRoom=? AND idHotel=?";
+         update += "WHERE idHotel=? AND idRoom=?";
 
-         PreparedStatement stmt = this.cnn.prepareStatement (update);
+         PreparedStatement stmt = cnn.prepareStatement (update);
 
          stmt.setInt (1, (room.getNumber ()));
          stmt.setInt (2, room.getBed ());
@@ -117,11 +117,12 @@ public class RoomsDAL
          if (!room.getImgPath ().isEmpty ())
          {
             stmt.setString (7, room.getImgPath ());
-            stmt.setInt (8, room.getIdRoom ());
-            stmt.setInt (9, room.getIdHotel ());
+            stmt.setInt (8, room.getIdHotel ());
+            stmt.setInt (9, room.getIdRoom ());
          }
-         stmt.setInt (7, room.getIdRoom ());
-         stmt.setInt (8, room.getIdHotel ());
+         stmt.setInt (7, room.getIdHotel ());
+         stmt.setInt (8, room.getIdRoom ());
+         
 
          stmt.executeUpdate ();
 

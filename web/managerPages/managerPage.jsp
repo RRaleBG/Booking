@@ -1,4 +1,5 @@
 <!DOCTYPE>
+<title>Manager page</title>
 <%@page import="baza.Konekcija"%>
 <%@page import="java.util.List"%>
 <%@page import="model.HotelDAL" %>
@@ -29,19 +30,19 @@
       request.setAttribute ("listaHotela", hotel);
    }
 %>
-<div class="container-fluid w-75 align-items-center">
+<div class="container-fluid w-75">
     <%
        String por = (String) request.getAttribute ("obavestenje");
        if (por != null)
        {
     %>
-    <div class="alert border-1 bg-glass rounded-3 container shadow border-success mt-3 align-items-center col-md-6" role="alert">
-	<h4 class="text-center text-success">
-	    <%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
-	    <button type="button" class="btn-close btn-outline-success offset-2 text-success" data-bs-dismiss="alert" aria-label="Close"/>
-	</h4>
+    <div class="alert bg-glass border-success rounded-4 container shadow-md mt-3 align-items-center col-md-6" role="alert">
+        <h5 class="text-center text-success">
+            <%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
+            <button type="button" class="btn-close btn-outline-success offset-2 text-success" data-bs-dismiss="alert" aria-label="Close"/>
+        </h5>
     </div>	
-    <%}%>
+    <%}%>  
     <c:forEach var="hot" items="${listaHotela}">
        <div class="card card-deck md-1 py-1 bg-glass m-2 rounded-3" style="display:inline-block;">
 	   <div class="card-header text-white-50 fw-semibold border-0">
@@ -52,7 +53,7 @@
 	   </div>
 	   <div class="border-0 rounded-2 px-1">
 	       <a rel="alternate"  href="<%= request.getContextPath ()%>/userPages/roomsFromHotel.jsp?idHotel=${hot.idHotel}" target="_self">        
-		   <img src="<%= request.getContextPath () + "/Slike/"%>${hot.imagePath}" class="img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 14em; width: 21em;">		   
+		   <img src="<%= request.getContextPath () + "/Slike/Hoteli/"%>${hot.imagePath}" class="img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 14em; width: 21em;">		   
 	       </a>
 	   </div> 
 	   <div class="card-footer border-0 align-items-center ml-3">	       

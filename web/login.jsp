@@ -17,20 +17,16 @@
 		<div id="radius-shape-1" class="position-absolute shadow-5-strong"></div>
 		<div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 		<div class="card bg-glass">
-
-		    <%   String e = (String) request.getAttribute ("poruka");
+		    <%                       String e = (String) request.getAttribute ("poruka");
                        if (e != null)
-                       {
-		    %>
+                       {%>
 		    <h2 class="card-header border-0 text-danger bg-transparent mt-2">
 			<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
-		    </h2>
-		    <%}
+		    </h2> <%}
                     else
                     {%>
 		    <h2 class="card-header border-0 bg-transparent mt-2">Login</h2>
 		    <%}%>
-
 		    <div class="card-body px-4 py-4">
 			<!-- LOGIN FORMA -->
 			<form action="Login" method="POST" class="needs-validation" novalidate>   

@@ -14,7 +14,6 @@ public class AddHotel extends HttpServlet
 
    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-
    }
 
    @Override
@@ -35,7 +34,7 @@ public class AddHotel extends HttpServlet
 
       if (name.isEmpty ())
       {
-         obavestenje = "Name of Hotel missing!";
+         obavestenje = "Hotel name is missing!";
 
          request.setAttribute ("obavestenje", obavestenje);
          RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/addHotel.jsp");
@@ -93,13 +92,14 @@ public class AddHotel extends HttpServlet
       {
          try
          {
-            String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Projekti/Booking/web/Slike/" + imageName;
+            String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Projekti/Booking/web/Slike/Hoteli/" + imageName;
 
             FileOutputStream upload = new FileOutputStream (folderSlika);
             InputStream input = part.getInputStream ();
 
             byte[] data = new byte[input.available ()];
             input.read (data);
+
             upload.write (data);
             upload.close ();
 
@@ -125,10 +125,10 @@ public class AddHotel extends HttpServlet
          {
             e.printStackTrace ();
          }
-
       }
    }
 
+   //
    @Override
    public String getServletInfo()
    {

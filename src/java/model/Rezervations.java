@@ -9,25 +9,26 @@ public class Rezervations {
    private Date dateCheckIn;
    private Date dateCheckOut;
    private int price;
-   private boolean canceledRes;
+   private int canceledRes;
    private int idHotel;
    private int idGest;
    private String hotelName;
 
-   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, int idHotel, int idGest,
-         String hotelName) {
+   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, int canceledRes, int idHotel, int idGest, String hotelName)
+   {
       this.idRes = idRes;
       this.idRoom = idRoom;
       this.dateCheckIn = dateCheckIn;
       this.dateCheckOut = dateCheckOut;
       this.price = price;
+      this.canceledRes = canceledRes;
       this.idHotel = idHotel;
       this.idGest = idGest;
       this.hotelName = hotelName;
    }
 
-   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, boolean canceledRes, int idHotel,
-         int idGest) {
+   public Rezervations(int idRes, Date dateCheckIn, Date dateCheckOut, int price, int canceledRes, int idHotel, int idGest)
+   {
       this.idRes = idRes;
       this.dateCheckIn = dateCheckIn;
       this.dateCheckOut = dateCheckOut;
@@ -81,11 +82,13 @@ public class Rezervations {
       this.price = price;
    }
 
-   public boolean isCanceledRes() {
+   public int getCanceledRes()
+   {
       return canceledRes;
    }
 
-   public void setCanceledRes(boolean canceledRes) {
+   public void setCanceledRes(int canceledRes)
+   {
       this.canceledRes = canceledRes;
    }
 
@@ -105,8 +108,7 @@ public class Rezervations {
       this.idGest = idGest;
    }
 
-   public Rezervations() {
-
+   public Rezervations()
+   {
    }
-
 }

@@ -1,4 +1,5 @@
 <!DOCTYPE>
+<title>Rooms</title>
 <%@page import="baza.Konekcija"%>
 <%@page import="java.util.List"%>
 <%@page import="model.*" %>
@@ -33,64 +34,77 @@
    {
       response.sendRedirect ("../login.jsp");
    }
-
 %>
-<div class="container mb-2 py-3">
+<div class="container-fluid w-75 px-5">
+    <%  String e = (String) request.getAttribute ("obavestenje");
+       if (e != null)
+       {
+    %>
+    <h4 class="alert shadow border-1 bg-glass text-center text-success color-success border-success">
+        <%= request.getAttribute ("obavestenje") != null ? request.getAttribute ("obavestenje") : " "%>
+        <button type="button" class="btn-close btn-outline-success offset-1 text-success" data-bs-dismiss="alert" aria-label="Close"/>
+    </h4>    
+    <%}%>   
+
     <c:forEach var="soba" items="${listaSoba}">
-       <div class="container p-3 border-0" style="max-width:800px;" >
-	   <div class="card bg-glass border-0 p-3">
-	       <h4 class="card-header text-white border-info bg-transparent"> Room number: ${soba.number}    </h4>
-	       <table>
-		   <tr class=" p-3 text-white-50">
-		       <td>                  
-			   Hotel name    <br>
-			   Id room:      <br/>   
-			   Id hotel:     <br/>    
-			   Room number:  <br/>  
-			   Beds:         <br/> 
-			   Balkon        <br/>  
-			   Smoking       <br/> 
-			   Pets          <br/>
-			   Tv            <br/>
-		       </td>     
-		       <td class="text-left fw-semibold text-white">        
-			   ${ hotel.name } <br>
-			   ${ soba.idRoom }     <br/>  
-			   ${ soba.idHotel }     <br/>    
-			   ${ soba.number }      <br/>  
-			   ${ soba.bed }         <br/> 
-			   ${ soba.balkon }      <br/>  
-			   ${ soba.smoking }     <br/> 
-			   ${ soba.pets }        <br/>              
-			   ${ soba.tv }          <br/>
-		       </td>
-		       <td class="p-3"> 
-			   <div class="col">
-			       <div class="row">
-				   <div class="p-1">
-				       <img src="../Slike/${soba.imgPath}" class="img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 16em; width: 25em;" align="right">         
-				   </div>                          
-			       </div>             
-			   </div>
-		       </td>  
-		   </tr>             
-		   <tr>
-		       <td>
-			   <div align="left">
-			       <% if (user != null && autorizacija.isInRole (user.getUsername ()) == "user")
-                                  {%>             
-			       <a class="btn btn-outline-warning btn-sm shadow" href="./reserveRoom.jsp?idRoom=${soba.idRoom}&idHotel=${soba.idHotel}&id=${_idUser.id}">Reservation</a>
-			       <%}
-                               else if (user != null && autorizacija.isInRole (user.getUsername ()) == "menager")
-                               {%>
-			       <a class="btn btn-outline-warning btn-sm shadow" href="../managerPages/editRooms.jsp?idHotel=${hotel.idHotel}&idRoom=${soba.idRoom}">Edit room</a>
-			       <%}%>
-			   </div>
-		       </td>
-		   </tr>
-	       </table>   
-	   </div>  
+       <div class="card card-deck md-1 py-1 bg-glass m-2 rounded-3" style="display:inline-block;">
+	   <div class="card-header text-white-50 fw-semibold border-0 mr-0">
+	       Room: ${soba.number}
+	   </div>
+
+	   <div class="border-0 p-1">	           
+	       <img src="<%= request.getContextPath () + "/Slike/Sobe/"%>${soba.imgPath}" class="img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 14em; width: 21em;">	
+	   </div> 
+
+	   <div class="card-footer border-0 ml-3">
+
+	       <%-- Balkon --%>	       
+	       <c:if test="${ soba.balkon == 0}">
+		  <span class='badge text-bg-danger mr-4 py-1'>Balkon</span>		   
+	       </c:if>
+	       <c:if test="${ soba.balkon == 1}">
+		  <span class='badge text-bg-success mr-4'>Balkon</span>		   
+	       </c:if>
+
+	       <%-- Smoking --%>
+	       <c:if test="${ soba.smoking == 0}">
+		  <span class='badge text-bg-danger mr-4'>Smoking</span>		   
+	       </c:if>
+	       <c:if test="${ soba.smoking == 1}">
+		  <span class='badge text-bg-success mr-4'>Smoking</span>		   
+	       </c:if>
+
+	       <%-- Pets --%>
+	       <c:if test="${ soba.pets == 0}">
+		  <span class='badge text-bg-danger mr-4'>Pets</span>		   
+	       </c:if>
+	       <c:if test="${ soba.pets == 1}">
+		  <span class='badge text-bg-success mr-4'>Pets</span>		   
+	       </c:if>
+
+	       <%-- Tv --%>
+	       <c:if test="${ soba.tv == 0}">
+		  <span class='badge text-bg-danger mr-3'>Tv</span>		   
+	       </c:if>
+	       <c:if test="${ soba.tv == 1}">
+		  <span class='badge text-bg-success mr-3'>Tv</span>		   
+	       </c:if>
+	   </div>
+
+	   <%-- Rola-Menager-button: - Edit room -  Rola-User-button: - Reservation  --%>
+	   <div class="py-1 mx-4 mb-1">
+	       <% if (user != null && autorizacija.isInRole (user.getUsername ()) == "user")
+                  { %>             
+	       <a class="btn btn-outline-warning btn-sm shadow-md" href="./reserveRoom.jsp?idRoom=${soba.idRoom}&idHotel=${soba.idHotel}&id=${_idUser.id}">Reservation</a>
+	       <%}
+               else if (user != null && autorizacija.isInRole (user.getUsername ()) == "menager")
+               { %>
+	       <a class="btn btn-outline-warning btn-sm shadow" href="../managerPages/editRooms.jsp?idHotel=${hotel.idHotel}&idRoom=${soba.idRoom}">Edit room</a>
+	       <%}%>
+	   </div>
+
        </div>
     </c:forEach> 
+
 </div>
 <%@ include file="../footer.jsp" %>

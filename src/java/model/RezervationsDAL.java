@@ -42,7 +42,7 @@ public class RezervationsDAL
             Date dateCheckIn = rez.getDate ("dateCheckIn");
             Date dateCheckOut = rez.getDate ("dateCheckOut");
             int price = rez.getInt ("price");
-            boolean canceledRes = rez.getBoolean ("canceledRes");
+            int canceledRes = rez.getInt ("canceledRes");
             int idHotel = rez.getInt ("idHotel");
             int idGest = rez.getInt ("idGest");
 
@@ -77,12 +77,12 @@ public class RezervationsDAL
             Date dateCheckIn = rez.getDate ("dateCheckIn");
             Date dateCheckOut = rez.getDate ("dateCheckOut");
             int price = rez.getInt ("price");
-            boolean canceledRes = rez.getBoolean ("canceledRes");
+            int canceledRes = rez.getInt ("canceledRes");
             int idHotel = rez.getInt ("idHotel");
             int idGest = rez.getInt ("idGest");
             String hotelName = rez.getString ("name");
 
-            Rezervations rr = new Rezervations (idRes, dateCheckIn, dateCheckOut, price, idHotel, idGest, hotelName);
+            Rezervations rr = new Rezervations (idRes, dateCheckIn, dateCheckOut, price, canceledRes, idHotel, idGest, hotelName);
 
             rezervation.add (rr);
          }
@@ -103,7 +103,7 @@ public class RezervationsDAL
       {
          Connection cnn = Konekcija.createConnection ();
 
-         String reserveRoom = "INSERT INTO reservations(idGest, idHotel, dateCheckIn, dateCheckOut, price) VALUES(?,?,?,?,?)";
+         String reserveRoom = "INSERT INTO reservations(idGest, idHotel, dateCheckIn, dateCheckOut, price, canceledRes) VALUES(?,?,?,?,?,?)";
 
          PreparedStatement stmt = cnn.prepareStatement (reserveRoom);
 
@@ -112,10 +112,14 @@ public class RezervationsDAL
          stmt.setDate (3, (java.sql.Date) reservation.getDateCheckIn ());
          stmt.setDate (4, (java.sql.Date) reservation.getDateCheckOut ());
          stmt.setInt (5, reservation.getPrice ());
+         stmt.setInt (6, reservation.getCanceledRes ());
 
          stmt.execute ();
 
          obavestenje = true;
+
+         stmt.close ();
+         cnn.close ();
       }
       catch (SQLException e)
       {
@@ -141,6 +145,33 @@ public class RezervationsDAL
 
          obavestenje = true;
 
+      }
+      catch (SQLException e)
+      {
+         e.printStackTrace ();
+      }
+
+      return obavestenje;
+   }
+
+   public boolean cancelReservation(int id)
+   {
+
+      boolean obavestenje = false;
+
+      try
+      {
+         Connection cnn = Konekcija.createConnection ();
+
+         String update = "UPDATE reservations set canceledRes=1 WHERE idRes=?";
+
+         PreparedStatement stmt = cnn.prepareStatement (update);
+
+         stmt.setInt (1, id);
+
+         stmt.executeUpdate ();
+
+         obavestenje = true;
       }
       catch (SQLException e)
       {

@@ -9,17 +9,13 @@ import model.UsersDAL;
 
 public class Login extends HttpServlet
 {
-
    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-
-      //response.sendRedirect (request.getContextPath () + "/managerPages/managerPage.jsp"); //.forward (request, response);
    }
 
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-
    }
 
    @Override
@@ -53,17 +49,20 @@ public class Login extends HttpServlet
       if (id > 0)
       {
          HttpSession session = request.getSession ();
+
          UsersDAL baza = new UsersDAL ();
          Users user = new Users ();
+
          Users korisnik = baza.getByUserName (username);
 
          user.setUsername (username);
          user.setPassword (password);
 
-         if ((baza.validate (user) == true) && (baza.isInRole (request.getParameter ("username")) == "user"))
+         if ((baza.validate (user) == true) && (baza.isInRole (user.getUsername ()) == "user"))
          {
             session.setAttribute ("user", user);
             session.setAttribute ("userId", korisnik);
+
             RequestDispatcher rd = request.getRequestDispatcher ("/userPages/userPage.jsp");
             rd.forward (request, response);
          }
@@ -78,20 +77,21 @@ public class Login extends HttpServlet
          if ((baza.validate (user) == true) && (baza.isInRole (user.getUsername ()) == "menager"))
          {
             session.setAttribute ("user", user);
-            response.sendRedirect (request.getContextPath () + "/managerPages/managerPage.jsp");
-//            RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/managerPage.jsp");
-//            rd.forward (request, response);
+            RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/managerPage.jsp");
+            rd.forward (request, response);
          }
       }
       else
       {
          poruka = "Login failed!";
          request.setAttribute ("poruka", poruka);
+
          RequestDispatcher rd = request.getRequestDispatcher ("login.jsp");
          rd.forward (request, response);
       }
    }
 
+   //
    @Override
    public String getServletInfo()
    {

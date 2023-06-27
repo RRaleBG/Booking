@@ -105,7 +105,7 @@
 				    Looks good!
 				</div>
 				<div class="invalid-feedback">
-				    Please choose a username
+				    Please choose a password
 				</div>
 			    </div>
 			    <!-- SUBMIT  BUTTON -->       

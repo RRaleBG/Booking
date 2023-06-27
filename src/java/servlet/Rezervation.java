@@ -38,7 +38,8 @@ public class Rezervation extends HttpServlet
       int idRoom = Integer.parseInt (request.getParameter ("idRoom"));
       Date dateCheckIn = Date.valueOf (request.getParameter ("dateCheckIn"));
       Date dateCheckOut = Date.valueOf (request.getParameter ("dateCheckOut"));
-      int price = 200;
+      int price = 30;
+      int canceledReservation = 0;
 
       java.sql.Date sqlDate = new java.sql.Date (dateCheckIn.getTime ());
       java.sql.Date sqlDate1 = new java.sql.Date (dateCheckOut.getTime ());
@@ -48,6 +49,7 @@ public class Rezervation extends HttpServlet
       rez.setDateCheckIn (sqlDate);
       rez.setDateCheckOut (sqlDate1);
       rez.setPrice (price);
+      rez.setCanceledRes (canceledReservation);
 
       if (baza.addReservation (rez))
       {
@@ -64,7 +66,6 @@ public class Rezervation extends HttpServlet
 
          request.setAttribute ("poruka", poruka);
          response.sendRedirect ("userPages/reserveRoom.jsp?idRoom=" + idRoom + "&idHotel=" + idHotel);
-
       }
    }
 

@@ -31,9 +31,11 @@
       }
    }
 %>
-<div class="container w-75">    
-    <div class="alert alert-success">
-	<a class="btn btn-oubline succes text-center" href="./adminPage.jsp">Return</a>
+<div class="container  mt-5   ">    
+    <div class="alert  mt-5 bg-glass border-1 border-success shadow-md">
+	<a class=" alert text-success text-center" href="./adminPage.jsp">
+	    <h3>User deleted successfully!</h3>
+	</a>
     </div>
 </div>
 <%@ include file="../footer.jsp" %>
