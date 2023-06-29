@@ -1,0 +1,88 @@
+
+#booking {
+	font-family: 'Poppins', sans-serif;
+	background-image: url('img/background.jpg');
+	background-size: cover;
+	background-position:center;
+}
+
+#booking::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.booking-form {
+	background: #fff;
+	border-radius: 2px;
+}
+
+.booking-form>form .row.no-margin {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.booking-form>form .row.no-margin>[class*="col-"] {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.booking-form .form-group {
+	position: relative;
+	padding: 25px;
+	margin-bottom: 0px;
+}
+
+.booking-form .form-group:after {
+	content: '';
+	background: rgba(129, 131, 144, 0.15);
+	position: absolute;
+	top: 25px;
+	bottom: 0;
+	right: 0px;
+	width: 2px;
+	height: 75px;
+}
+
+.booking-form .form-control {
+	background-color: transparent;
+	border-radius: 0px;
+	border: none;
+	height: 50px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	font-size: 20px;
+	color: #222;
+	font-weight: 400;
+	padding: 0;
+}
+
+.booking-form .form-control::-webkit-input-placeholder {
+	color: #818390;
+}
+
+.booking-form .form-control:-ms-input-placeholder {
+	color: #818390;
+}
+
+.booking-form .form-control::placeholder {
+	color: #818390;
+}
+
+.booking-form input[type="date"].form-control:invalid {
+	color: #818390;
+}
+
+.booking-form .form-label {
+	color: #ff0063;
+	display: block;
+	font-weight: 400;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+}
+
