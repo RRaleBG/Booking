@@ -2,7 +2,7 @@
 
 ### Java Sevrvlet
 ### JavaServer Pages
-### JSTL/sql - fmt - functions
+### JSTL/core - fmt - functions
 ##
 #### Worked in:
 ##### NetBeans 18
