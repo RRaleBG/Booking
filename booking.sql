@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2023 at 05:55 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Jun 29, 2023 at 03:14 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,15 +42,10 @@ CREATE TABLE `hotel` (
 --
 
 INSERT INTO `hotel` (`idHotel`, `name`, `city`, `roomCount`, `parking`, `stars`, `imagePath`) VALUES
-(1, 'Central Park', 'Belgrade', 200, 100, 4, '1.jpg'),
-(7, 'Viktor', 'Belgrade', 100, 120, 4, '7.jpg'),
-(8, 'Resort Hotel', 'Belgrade', 140, 200, 5, '8.jpg'),
-(19, 'Lux', 'Panama', 100, 50, 5, 'lux.jpg'),
-(20, 'Budim', 'Budapest', 200, 200, 5, 'budapestParlament.jpg'),
-(21, 'London', 'London', 150, 110, 5, 'london.jpg'),
-(22, 'Brit', 'Britanica', 140, 60, 5, 'britanica.jpg'),
-(23, 'Goa', 'Pancevo', 2000, 10, 5, 'costaAdeje.jpg'),
-(33, 'Ivan', 'Ivangrad', 10, 150, 5, 'Hotel-Tips.jpg');
+(38, 'Budim', 'Budapest', 100, 50, 5, 'Budim.jpg'),
+(39, 'London', 'London', 100, 100, 5, 'London.jpg'),
+(40, 'Lux', 'Las Vegas', 100, 100, 5, 'lux.jpg'),
+(41, 'Costa Adeje', 'Las Vegas', 140, 60, 4, 'CostaAdeje.jpg');
 
 -- --------------------------------------------------------
 
@@ -73,9 +68,34 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`idRes`, `idGest`, `idHotel`, `dateCheckIn`, `dateCheckOut`, `price`, `canceledRes`) VALUES
-(1, 2, 1, '2023-05-24', '2023-05-30', 150, 0),
-(3, 1, 1, '2023-05-24', '2023-05-31', 150, 1),
-(4, 1, 7, '2023-05-23', '2023-05-30', 100, 0);
+(6, 1, 38, '2023-07-01', '2023-07-08', 30, 1),
+(8, 1, 38, '2023-06-25', '2023-06-29', 30, 1),
+(9, 1, 38, '2023-06-07', '2023-07-04', 30, 1),
+(10, 1, 38, '2023-06-28', '2023-06-30', 30, 1),
+(11, 1, 38, '2023-07-05', '2023-07-14', 30, 1),
+(12, 1, 38, '2023-07-05', '2023-07-14', 30, 1),
+(13, 1, 38, '2023-07-05', '2023-07-14', 30, 1),
+(14, 1, 38, '2023-07-05', '2023-07-14', 30, 1),
+(15, 1, 38, '2023-06-15', '2023-06-29', 30, 0),
+(16, 1, 38, '2023-06-15', '2023-06-29', 30, 0),
+(17, 1, 38, '2023-06-15', '2023-06-29', 30, 0),
+(18, 5, 38, '2023-06-14', '2023-06-22', 30, 0);
+
+--
+-- Triggers `reservations`
+--
+DELIMITER $$
+CREATE TRIGGER `trig_Points` AFTER INSERT ON `reservations` FOR EACH ROW UPDATE users 
+SET points = (points + 5)
+WHERE id = NEW.idGest
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `trig_Points_Bris` BEFORE UPDATE ON `reservations` FOR EACH ROW UPDATE users 
+SET points = (points - 5)
+WHERE id = NEW.idGest
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -120,12 +140,13 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`idRoom`, `idHotel`, `number`, `bed`, `balkon`, `smoking`, `pets`, `tv`, `imgPath`) VALUES
-(1, 1, 1, 2, 1, 1, 1, 1, 'soba-Central-Park-1.jpg'),
-(2, 1, 2, 2, 0, 1, 1, 1, 'soba-Central-Park-2.jpg'),
-(3, 7, 1, 4, 1, 1, 1, 1, 'soba-Viktor-1.jpg'),
-(4, 7, 2, 4, 0, 0, 0, 0, 'soba-Viktor-2.jpg'),
-(5, 7, 3, 1, 1, 0, 0, 1, 'soba-Viktor-3.jpg'),
-(6, 7, 4, 1, 1, 1, 1, 1, 'soba-Viktor-4.jpg');
+(9, 38, 1, 2, 1, 0, 0, 1, 'budimRoom_1.jpg'),
+(10, 39, 1, 1, 0, 1, 1, 1, 'soba-Club-Resort-2.jpg'),
+(11, 38, 2, 2, 1, 0, 1, 1, 'budimRoom_2.jpg'),
+(12, 38, 3, 2, 0, 1, 1, 0, 'budimRoom_3.jpg'),
+(13, 38, 4, 2, 0, 1, 0, 1, 'budimRoom_4.jpg'),
+(14, 41, 1, 1, 1, 1, 1, 1, 'soba-Club-Resort-5.jpg'),
+(15, 41, 2, 2, 1, 1, 1, 1, 'soba-Club-Resort-3.jpg');
 
 -- --------------------------------------------------------
 
@@ -148,10 +169,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `password`, `email`, `points`) VALUES
-(1, 'User_First', 'User_Last', 'user', 'user', 'user@user.rs', 15),
+(1, 'userName', 'userLastname', 'user', 'user', 'user@user.rs', 55),
 (2, 'Manager', 'Manager', 'manager', 'manager', 'manager@manager.rs', 10),
 (3, 'admin', 'admin', 'admin', 'admin', 'admin@admin.rs', 10),
-(4, 'Rados', 'Rajcic', 'Rale', '1234', 'rados6320@its.edu.rs', 0);
+(4, 'Rados', 'Rajcic', 'Rale', '1234', 'rados6320@its.edu.rs', 0),
+(5, 'Petar', 'Peric', 'pera', 'pera', 'petar@peric.rs', 5);
 
 --
 -- Triggers `users`
@@ -182,7 +204,8 @@ INSERT INTO `user_role` (`id`, `idRole`) VALUES
 (1, 2),
 (2, 3),
 (3, 1),
-(4, 1);
+(4, 1),
+(5, 2);
 
 --
 -- Indexes for dumped tables
@@ -200,8 +223,8 @@ ALTER TABLE `hotel`
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`idRes`) USING BTREE,
-  ADD UNIQUE KEY `idGest` (`idGest`,`idHotel`) USING BTREE,
-  ADD KEY `idHotel` (`idHotel`);
+  ADD KEY `idHotel` (`idHotel`),
+  ADD KEY `idGest` (`idGest`,`idHotel`);
 
 --
 -- Indexes for table `role`
@@ -239,13 +262,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `idHotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idHotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `idRes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -257,13 +280,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `idRoom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idRoom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
