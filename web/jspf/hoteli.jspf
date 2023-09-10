@@ -6,12 +6,9 @@ Jsp - shared content page
 --%>
 <!DOCTYPE>
 <%@page import="java.util.Base64"%>
-<%@page import="model.Users"%>
-<%@page import="model.Hotel"%>
+<%@page import="model.*"%>
 <%@page import="java.util.List"%>
-<%@page import="model.HotelDAL"%>
 <%@page import="baza.Konekcija"%>
-<%@page import="model.UsersDAL"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%    //
     UsersDAL autorizacija = new UsersDAL(Konekcija.createConnection());
@@ -32,16 +29,20 @@ Jsp - shared content page
     </h3>
 </div>	
 <%}%>
-<div class="container-fluid py-2 px-2 w-75">
+<div class="container-fluid w-75 mt-3">
+
     <div class="justify-content-center">
 
 
         <c:forEach var="hot" items="${listaHotela}">
-            <div class="card card-deck bg-glass m-2 rounded-3" style="display:inline-block;">
+
+            <div class="card card-deck bg-glass m-1 rounded-3" style="display:inline-block;">
+
                 <div class="card-header text-white fw-semibold border-0">
                     ${hot.name}  
 
-                    <!-- ispis zvezdica -->
+                    <%-- ispis zvezdica --%>
+
                     <c:forEach begin="1" step="1"  end="${hot.stars}"> 
                         <% out.print("<i class=\"bi bi-star-fill mr-2 float-md-end mt-2\" style=\"color:yellow;\"></i>");%>
                     </c:forEach>

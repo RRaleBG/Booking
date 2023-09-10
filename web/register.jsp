@@ -1,8 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : May 6, 2023, 6:38:10 PM
-    Author     : rale_
---%>
 <!DOCTYPE>
 <%@page import="model.UsersDAL"%>
 <jsp:useBean id="obj" class="model.Users"/>
@@ -33,8 +28,11 @@
 		    <h3 class="text-center text-danger mt-3">
 			<%= request.getAttribute ("poruka") != null ? request.getAttribute ("poruka") : " "%>
 		    </h3>
-		    <%}%>
+		    <%}
+                    else
+                    {%>
 		    <h2 class="card-header border-0 bg-transparent mt-2">Register </h2>
+		    <%}%>
 		    <div class="card-body px-4 py-4">
 			<!-- REGISTRACIJA -->
 			<form action="Register" method="POST" class="needs-validation" novalidate>   

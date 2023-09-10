@@ -17,7 +17,7 @@
 		<div id="radius-shape-1" class="position-absolute shadow-5-strong"></div>
 		<div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 		<div class="card bg-glass">
-		    <%                       String e = (String) request.getAttribute ("poruka");
+		    <%String e = (String) request.getAttribute ("poruka");
                        if (e != null)
                        {%>
 		    <h2 class="card-header border-0 text-danger bg-transparent mt-2">

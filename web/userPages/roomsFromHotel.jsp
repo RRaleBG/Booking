@@ -35,7 +35,7 @@
       response.sendRedirect ("../login.jsp");
    }
 %>
-<div class="container-fluid w-75 px-5">
+<div class="container-fluid w-75 mt-3 py-3">
     <%  String e = (String) request.getAttribute ("obavestenje");
        if (e != null)
        {
@@ -47,18 +47,19 @@
     <%}%>   
 
     <c:forEach var="soba" items="${listaSoba}">
-       <div class="card card-deck md-1 py-1 bg-glass m-2 rounded-3" style="display:inline-block;">
+       <div class="card card-deck bg-glass m-2 rounded-3" style="display:inline-block;">
+
 	   <div class="card-header text-white-50 fw-semibold border-0 mr-0">
 	       Room: ${soba.number}
 	   </div>
 
 	   <div class="border-0 p-1">	           
-	       <img src="<%= request.getContextPath () + "/Slike/Sobe/"%>${soba.imgPath}" class="img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 14em; width: 21em;">	
+	       <img src="<%= request.getContextPath () + "/Slike/Sobe/"%>${soba.imgPath}" class="img img-thumbnail bg-glass rounded border-0" alt="..." style="height: 14em; width: 20em;">	
 	   </div> 
 
 	   <div class="card-footer border-0 ml-3">
 
-	       <%-- Balkon --%>	       
+	       <%-- Balkon --%>	
 	       <c:if test="${ soba.balkon == 0}">
 		  <span class='badge text-bg-danger mr-4 py-1'>Balkon</span>		   
 	       </c:if>

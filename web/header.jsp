@@ -32,8 +32,8 @@
 		<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">		    
 		    <div class="navbar-nav">                  
 			<%
-                           out.print ("<a class=\"nav-item nav-link\" href=\"" + request.getContextPath () + "/about.jsp\">About</a>");
-                           out.print ("<a class=\"nav-item nav-link\" href=\"" + request.getContextPath () + "/contact.jsp\">Contact</a>");
+                           out.print ("<a class=\"nav-item nav-link\" href=\"" + request.getContextPath () + "/about.jsp\">O projektu</a>");
+                           // out.print ("<a class=\"nav-item nav-link\" href=\"" + request.getContextPath () + "/contact.jsp\">Contact</a>");
 
                            if (baza.validate (user))
                            {

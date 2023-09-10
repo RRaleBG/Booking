@@ -92,7 +92,7 @@ public class AddHotel extends HttpServlet
       {
          try
          {
-            String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Projekti/Booking/web/Slike/Hoteli/" + imageName;
+            String folderSlika = "C:/Users/Rale/Desktop/Booking/web/Slike/Hoteli/" + imageName;
 
             FileOutputStream upload = new FileOutputStream (folderSlika);
             InputStream input = part.getInputStream ();

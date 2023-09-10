@@ -54,14 +54,16 @@
         <h2 class="card-header border-0 bg-transparent text-center"> ${hotel.name} </h2>	
 
         <div class="card-body p-2">
+
+
             <form action="../EditHotel" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
                 <div class="row m-3">
                     <div class="col-md-4 mt-2">
                         <input type="hidden" name="idHotel" value="${hotel.idHotel}"/>
                         <!--  NAME input -->
-                        <div class="col-md-10 ">
-                            <div class="form-outline text-center">
+                        <div class="col-md-10">
+                            <div class="form-outline form-sm text-center">
                                 <input type="text" name="name" value="${hotel.name}" id="form3Example1" class="form-control fw-semibold shadow" required autofocus/>
                                 <label class="form-label" for="form3Example1">Hotel name</label>
                             </div>

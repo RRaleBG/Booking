@@ -18,30 +18,73 @@ public class Register extends HttpServlet
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-      response.setContentType ("text/html;charset=UTF-8");
+      String firstname = request.getParameter ("firstname");
+      String lastname = request.getParameter ("lastname");
+      String username = request.getParameter ("username");
+      String email = request.getParameter ("email");
+      String password = request.getParameter ("password");
 
       Users user = new Users ();
       UsersDAL upit = new UsersDAL ();
 
-      String firstname = request.getParameter ("firstname");
       String poruka = "";
 
-      poruka = "Username required!";
-      request.setAttribute ("poruka", poruka);
-
-      user.setFirstname (request.getParameter ("firstname"));
-      user.setLastname (request.getParameter ("lastname"));
-      user.setUsername (request.getParameter ("username"));
-      user.setEmail (request.getParameter ("email"));
-      user.setPassword (request.getParameter ("password"));
-
-      if (upit.registerUser (user) == true)
+      if (firstname == null || firstname == "")
       {
-         response.sendRedirect ("./login.jsp");
+         poruka = "First name missing";
+      }
+
+      if (lastname.isEmpty () || lastname == null)
+      {
+         poruka = "Last name missing";
+      }
+
+      if (username.isEmpty () || username == null)
+      {
+         poruka = "Username missing";
+      }
+
+      if (email.isEmpty () || email == null)
+      {
+         poruka = "Email missing";
+      }
+
+      if (password.isEmpty () || password == null)
+      {
+         poruka = "Password missing";
+      }
+
+      if (password.equals (password))
+      {
+         user.setFirstname (firstname);
+         user.setLastname (lastname);
+         user.setUsername (username);
+         user.setEmail (email);
+         user.setPassword (password);
+
+         if (upit.registerUser (user) == true)
+         {
+            response.sendRedirect ("./login.jsp");
+         }
+         else
+         {
+            response.sendRedirect ("./error.jsp");
+         }
       }
       else
       {
-         response.sendRedirect ("./error.jsp");
+         poruka = "Registration failed. Please try again";
+         request.setAttribute ("poruka", poruka);
+
+         RequestDispatcher rd = request.getRequestDispatcher ("./register.jsp");
+         rd.forward (request, response);
+      }
+
+      if (!poruka.isEmpty ())
+      {
+         request.setAttribute ("poruka", poruka);
+         RequestDispatcher rd = request.getRequestDispatcher ("register.jsp");
+         rd.forward (request, response);
       }
    }
 
