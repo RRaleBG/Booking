@@ -26,7 +26,7 @@ public class EditHotel extends HttpServlet
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-      String obavestenje = "";
+      String obavestenje;
 
       int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
       String name = request.getParameter ("name");
