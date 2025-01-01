@@ -20,14 +20,14 @@ public class Konekcija
          }
          catch (ClassNotFoundException ex)
          {
-            ex.printStackTrace ();
+             ex.getMessage();
          }
 
          cnn = DriverManager.getConnection (baza, user, pass);
       }
-      catch (Exception e)
+      catch (SQLException e)
       {
-         e.printStackTrace ();
+          e.getMessage();
       }
       return cnn;
    }

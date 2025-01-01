@@ -72,16 +72,19 @@
                 <button type="button" class="btn-close btn-outline-danger offset-1 text-danger" data-bs-dismiss="alert" aria-label="Close"/>
             </h4>
         </div>	
-        <%}%>
+
+        <%
+            }
+        %>
         <form action="../Rezervation" method="POST">
 
-            <h5 class="text-white">Hotel ${hotelskaSoba.name}
-                <h5 class="text-white mb-4"> Name: ${id.username}</h5>    
-                <%--
-                           <input type="hidden" name="idGest" value="${id.id}"/>
-                           <input type="hidden" name="idHotel" value="${hotelskaSoba.idHotel}"/>
-                           <input type="hidden" name="idRoom" value="${soba.idRoom}"/>
-                --%>
+            <h5 class="text-white">Hotel: ${hotelskaSoba.name}</h5>
+            <h5 class="text-white mb-4"> Name: ${id.username}</h5>    
+                
+                <input type="hidden" name="idGest" value="${id.id}"/>
+                <input type="hidden" name="idHotel" value="${hotelskaSoba.idHotel}"/>
+                <input type="hidden" name="idRoom" value="${soba.idRoom}"/>
+               
                 <div class="row no-margin">
 
                     <div class="col-md-2">
@@ -101,18 +104,18 @@
                     <div class="col mr-2">
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
+                                <div class="form-group text-end">
                                     <span class="form-label">Check In</span>
                                     <input class="form-control shadow" type="date" name="dateCheckIn"  required>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
+                                <div class="form-group text-end">
                                     <span class="form-label">Check out</span>
                                     <input class="form-control shadow text-sm" type="date" name="dateCheckOut" required>
                                 </div>
                             </div>	
-                            <div class="col mt-4">		 
+                            <div class="col mt-4 text-end">		 
                                 <input type="submit" value="Book me" class="btn btn-danger shadow-lg"/>
                             </div>
                         </div>

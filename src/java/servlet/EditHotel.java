@@ -104,7 +104,7 @@ public class EditHotel extends HttpServlet
          }
          catch (IOException | ServletException e)
          {
-            e.printStackTrace ();
+            e.getMessage();
          }
       }
    }

@@ -18,57 +18,56 @@ public class Rezervation extends HttpServlet
    {
    }
 
-   //
+   // rados
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
 
    }
 
-   //
+   
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-      Rezervations rez = new Rezervations ();
-      RezervationsDAL baza = new RezervationsDAL (Konekcija.createConnection ());
+      Rezervations rez = new Rezervations();
+      RezervationsDAL baza = new RezervationsDAL(Konekcija.createConnection());
       String poruka = "";
 
-      int idGest = Integer.parseInt (request.getParameter ("idGest"));
-      int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
-      int idRoom = Integer.parseInt (request.getParameter ("idRoom"));
-      Date dateCheckIn = Date.valueOf (request.getParameter ("dateCheckIn"));
-      Date dateCheckOut = Date.valueOf (request.getParameter ("dateCheckOut"));
+      int idGest = Integer.parseInt(request.getParameter("idGest"));
+      int idHotel = Integer.parseInt(request.getParameter("idHotel"));
+      int idRoom = Integer.parseInt(request.getParameter("idRoom"));
+      Date dateCheckIn = Date.valueOf(request.getParameter("dateCheckIn"));
+      Date dateCheckOut = Date.valueOf(request.getParameter("dateCheckOut"));
       int price = 30;
       int canceledReservation = 0;
 
-      java.sql.Date sqlDate = new java.sql.Date (dateCheckIn.getTime ());
-      java.sql.Date sqlDate1 = new java.sql.Date (dateCheckOut.getTime ());
+//      java.sql.Date sqlDate = new java.sql.Date(dateCheckIn.getTime());
+//      java.sql.Date sqlDate1 = new java.sql.Date(dateCheckOut.getTime());
 
-      rez.setIdGest (idGest);
-      rez.setIdHotel (idHotel);
-      rez.setDateCheckIn (sqlDate);
-      rez.setDateCheckOut (sqlDate1);
-      rez.setPrice (price);
-      rez.setCanceledRes (canceledReservation);
+      rez.setIdGest(idGest);
+      rez.setIdHotel(idHotel);
+      rez.setDateCheckIn(dateCheckIn);
+      rez.setDateCheckOut(dateCheckOut);
+      rez.setPrice(price);
+      rez.setCanceledRes(canceledReservation);
 
-      if (baza.addReservation (rez))
-      {
+      if (baza.addReservation(rez)) {
 
          poruka = "Congratulations, have a nice holiday!";
 
-         request.setAttribute ("poruka", poruka);
-         RequestDispatcher rd = request.getRequestDispatcher ("/userPages/userPage.jsp");
-         rd.forward (request, response);
-      }
-      else
+         request.setAttribute("poruka", poruka);
+         RequestDispatcher rd = request.getRequestDispatcher("/userPages/userPage.jsp");
+         rd.forward(request, response);
+      } 
+      else 
       {
          poruka = "Something went wrong!";
 
-         request.setAttribute ("poruka", poruka);
-         response.sendRedirect ("userPages/reserveRoom.jsp?idRoom=" + idRoom + "&idHotel=" + idHotel);
+         request.setAttribute("poruka", poruka);
+         response.sendRedirect("userPages/reserveRoom.jsp?idRoom=" + idRoom + "&idHotel=" + idHotel);
       }
    }
-
+   
    //
    @Override
    public String getServletInfo()

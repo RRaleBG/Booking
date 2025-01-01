@@ -102,17 +102,23 @@
                         </div> 		
                     </div>    
                     <div class="col-md-8">
+                        
                         <!-- IMAGE -->
                         <div class="justify-content-center">
                             <!-- Uploaded image area-->
+                            
+                            
                             <div class="image mt-2 p-2">
                                 <img id="blah" src="../Slike/Hoteli/${hotel.imagePath}" alt="image" class="img-thumbnail mx-auto d-block bg-glass border-0" style="height:20em; width: auto;">
                             </div>
+                            
+                            
                             <!-- Upload image input-->
                             <div class="input-group rounded-pill justify-content-center p-2 mt-2">
+                                
                                 <input id="imgInp" accept="image/*" name="imagePath" type="file" class="form-control border-0 rounded-pill" >
-                                <label id="upload-label" for="imgInp" class="font-weight-light text-muted">  </label> 
-                                <input type="hidden" name="imagePath" value="${hotel.imagePath}" />
+                                <label id="upload-label" class="font-weight-light text-muted">  </label> 
+                                
                             </div> 	
                         </div>
                     </div>

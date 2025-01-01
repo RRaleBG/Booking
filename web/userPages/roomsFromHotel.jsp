@@ -94,16 +94,18 @@
 
 	   <%-- Rola-Menager-button: - Edit room -  Rola-User-button: - Reservation  --%>
 	   <div class="py-1 mx-4 mb-1">
-	       <% if (user != null && autorizacija.isInRole (user.getUsername ()) == "user")
-                  { %>             
-	       <a class="btn btn-outline-warning btn-sm shadow-md" href="./reserveRoom.jsp?idRoom=${soba.idRoom}&idHotel=${soba.idHotel}&id=${_idUser.id}">Reservation</a>
-	       <%}
-               else if (user != null && autorizacija.isInRole (user.getUsername ()) == "menager")
-               { %>
+	       <% 
+                    if (user != null && autorizacija.isInRole (user.getUsername ()) == "user")
+                    { 
+               %>             
+                    <a class="btn btn-outline-warning btn-sm shadow-md" href="./reserveRoom.jsp?idRoom=${soba.idRoom}&idHotel=${soba.idHotel}&id=${_idUser.id}">Reservation</a>
+	       <%   }
+                    else if (user != null && autorizacija.isInRole (user.getUsername ()) == "menager")
+                    { 
+               %>
 	       <a class="btn btn-outline-warning btn-sm shadow" href="../managerPages/editRooms.jsp?idHotel=${hotel.idHotel}&idRoom=${soba.idRoom}">Edit room</a>
 	       <%}%>
 	   </div>
-
        </div>
     </c:forEach> 
 

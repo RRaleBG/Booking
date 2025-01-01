@@ -73,11 +73,11 @@
                         </div>
                         <!-- CHECK-BOXES -->
                         <div class="row w-100 ml-3">
-                            <!-- Balcon -->
+                            <!-- Balkon -->
                             <div class="col-6 w-25">
                                 <div class="form-check form-switch text-center">
                                     <input type="checkbox" id="form3Example5" name="balkon" class="form-check-input col-md-6" role="switch"  />
-                                    <label class="form-label" for="form3Example5">Balcon</label>
+                                    <label class="form-label" for="form3Example5">Balkon</label>
                                 </div>    
                             </div>
                             <!-- SMOKING -->
