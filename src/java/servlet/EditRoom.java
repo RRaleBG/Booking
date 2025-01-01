@@ -27,7 +27,7 @@ public class EditRoom extends HttpServlet
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
       HttpSession session = request.getSession ();
-      String obavestenje = "";
+      String obavestenje;
 
       int idHotel = Integer.parseInt (request.getParameter ("idHotel"));
       int idRoom = Integer.parseInt (request.getParameter ("idRoom"));
@@ -37,37 +37,35 @@ public class EditRoom extends HttpServlet
       int smoking = (request.getParameter ("smoking") != null && request.getParameter ("smoking") != "checked" ? 1 : 0);
       int balkon = (request.getParameter ("balkon") != null && request.getParameter ("balkon") != "checked" ? 1 : 0);
       int pets = (request.getParameter ("pets") != null && request.getParameter ("pets") != "checked" ? 1 : 0);
-
       Part part = request.getPart ("imgPath");
       String fileName = (part == null) ? "" : part.getSubmittedFileName ();
-
-
+      
       try
       {
-         RoomsDAL editRoom = new RoomsDAL (Konekcija.createConnection ());
-         Rooms room = new Rooms ();
+          RoomsDAL editRoom = new RoomsDAL (Konekcija.createConnection ());
+          Rooms room = new Rooms ();
 
-         room.setIdHotel (idHotel);
-         room.setIdRoom (idRoom);
-         room.setNumber (number);
-         room.setBed (bed);
-         room.setTv ((byte) tv);
-         room.setBalkon ((byte) balkon);
-         room.setSmoking ((byte) smoking);
-         room.setPets ((byte) pets);
-         room.setImgPath (fileName);
+          room.setIdHotel (idHotel);
+          room.setIdRoom (idRoom);
+          room.setNumber (number);
+          room.setBed (bed);
+          room.setTv ((byte) tv);
+          room.setBalkon ((byte) balkon);
+          room.setSmoking ((byte) smoking);
+          room.setPets ((byte) pets);
+          room.setImgPath (fileName);
 
-         editRoom.editRoom (room);
+          editRoom.editRoom (room);
 
-         obavestenje = "Successfully updated room!";
-         request.setAttribute ("obavestenje", obavestenje);
+          obavestenje = "Successfully updated room!";
+          request.setAttribute ("obavestenje", obavestenje);
 
-         RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editRooms.jsp?idHotel=" + idHotel + "&idRoom=" + idRoom);
-         rd.forward (request, response);
-      }
-      catch (Exception e)
+          RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/editRooms.jsp?idHotel=" + idHotel + "&idRoom=" + idRoom);
+          rd.forward (request, response);
+      }      
+      catch (IOException | ServletException e)
       {
-         e.printStackTrace ();
+          e.getMessage();
       }
    }
 

@@ -50,7 +50,7 @@ public class RoomsDAL
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
 
       return obavestenje;
@@ -121,15 +121,12 @@ public class RoomsDAL
             stmt.setInt (9, room.getIdRoom ());
          }
          stmt.setInt (7, room.getIdHotel ());
-         stmt.setInt (8, room.getIdRoom ());
-         
-
+         stmt.setInt (8, room.getIdRoom ());         
          stmt.executeUpdate ();
-
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
    }
 
@@ -192,7 +189,7 @@ public class RoomsDAL
 
    public List<Rooms> getAllRoomsFromHotel(int id)
    {
-      List<Rooms> rooms = new ArrayList<Rooms> ();
+      List<Rooms> rooms = new ArrayList<> ();
 
       try
       {
@@ -223,7 +220,7 @@ public class RoomsDAL
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
 
       return rooms;

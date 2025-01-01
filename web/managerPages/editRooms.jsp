@@ -79,6 +79,7 @@
         request.setAttribute("room", roomInHotel);
     }
 %>
+
 <div class="container text-center mt-md-2 p-2">
     <%
         String por = (String) request.getAttribute("obavestenje");
@@ -93,14 +94,11 @@
     <%}%>
 
     <div class="container mt-md-3 py-3">
-
         <div class="card bg-glass border-0 py-2">
-
             <div class="card-body p-2">
 
                 <!-- Hotel Name -->
                 <h5 class="col-md-2 text-white-50"> ${hotel.name} </h5>
-
 
                 <form action="../EditRoom" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate >
 
@@ -136,47 +134,40 @@
                             </div>
                         </div>
 
-
                         <!-- Check box fields -->
                         <div class="col-md-2 ml-5 mb-3 mt-md-5">
 
                             <!-- Balkon -->
                             <div class="mt-3 form-check form-switch text-center col-md-4 mb-4">
                                 <input <c:if test="${room.balkon == 1}"> checked="checked" </c:if> name="balkon" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" >
-                                    <label class="form-check-label text-white-50" for="balkon">Balkon</label>
-                                </div>
-
-
-                                <!-- Smoking -->
-                                <div class="mt-3 form-check form-switch text-center col-md-4 mb-4">
-                                    <input <c:if test="${room.smoking == 1}"> checked="checked"</c:if> name="smoking" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                                    <label class="form-check-label text-white-50" for="flexSwitchCheckDefault">Smoking</label>
-                                </div>		
-
-
-                                <!-- PETS -->
-                                <div class="mt-3 form-check form-switch text-center col-md-4 mb-4">
-                                    <input <c:if test="${room.pets == 1}"> checked="checked" </c:if> name="pets" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                                    <label class="form-check-label text-white-50" for="flexSwitchCheckDefault">Pets</label>
-                                </div>
-
-
-                                <!-- TV -->
-                                <div class="mt-3 form-check form-check form-switch text-center col-md-4 mb-4">
-                                    <input <c:if test="${room.tv == 1}"> checked="checked" </c:if> name="tv" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                                    <label class="form-check-label text-white-50" for="flexSwitchCheckDefault">Tv</label>
-                                </div>
+                                <label class="form-check-label text-white-50" for="balkon">Balkon</label>
                             </div>
 
+                            <!-- Smoking -->
+                            <div class="mt-3 form-check form-switch text-center col-md-4 mb-4">
+                                <input <c:if test="${room.smoking == 1}"> checked="checked"</c:if> name="smoking" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                <label class="form-check-label text-white-50" for="flexSwitchCheckDefault">Smoking</label>
+                            </div>		
 
-                            <!-- IMAGE -->
-                            <div class="col">
+                            <!-- PETS -->
+                            <div class="mt-3 form-check form-switch text-center col-md-4 mb-4">
+                                <input <c:if test="${room.pets == 1}"> checked="checked" </c:if> name="pets" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                <label class="form-check-label text-white-50" for="flexSwitchCheckDefault">Pets</label>
+                            </div>
 
-                                <div class="justify-content-center">
+                            <!-- TV -->
+                            <div class="mt-3 form-check form-check form-switch text-center col-md-4 mb-4">
+                                <input <c:if test="${room.tv == 1}"> checked="checked" </c:if> name="tv" class="form-check-input col-md-8" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                <label class="form-check-label text-white-50" for="flexSwitchCheckDefault">Tv</label>
+                            </div>
+                        </div>
 
-                                    <!-- Uploaded image area -->
-                                    <div class="image mt-2 p-2">
-                                        <img id="blah" src="../Slike/Sobe/${room.imgPath}" alt="image" class="img-thumbnail mx-auto d-block bg-glass border-0" style="height:25em;">		
+                        <!-- IMAGE -->
+                        <div class="col">
+                            <div class="justify-content-center">
+                                <!-- Uploaded image area -->
+                                <div class="image mt-2 p-2">
+                                    <img id="blah" src="../Slike/Sobe/${room.imgPath}" alt="image" class="img-thumbnail mx-auto d-block bg-glass border-0" style="height:25em;">		
                                 </div>
 
                                 <!-- Upload image input -->
@@ -186,11 +177,11 @@
                                 </div>
                             </div>
                         </div> 
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>     
-</div>
+        </div>     
+    </div>
 </div>
 
 <script>
@@ -213,16 +204,12 @@
         });
     })();
 
-
-
     imgInp.onchange = evt => {
         const [file] = imgInp.files
         if (file) {
             blah.src = URL.createObjectURL(file)
         }
     }
-
-
 
 
 </script>

@@ -24,7 +24,7 @@ public class AddHotel extends HttpServlet
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-      String obavestenje = "";
+      String obavestenje;
 
       String name = request.getParameter ("name");
       String city = request.getParameter ("city");
@@ -92,6 +92,7 @@ public class AddHotel extends HttpServlet
       {
          try
          {
+            
             String folderSlika = "E:/ITS/3 Godina/6 Semestar/Java/Booking/web/Slike/Hoteli/" + imageName;
 
             FileOutputStream upload = new FileOutputStream (folderSlika);
@@ -121,9 +122,9 @@ public class AddHotel extends HttpServlet
             RequestDispatcher rd = request.getRequestDispatcher ("/managerPages/managerPage.jsp");
             rd.forward (request, response);
          }
-         catch (Exception e)
+         catch (IOException | ServletException e)
          {
-            e.printStackTrace ();
+            e.getMessage();
          }
       }
    }

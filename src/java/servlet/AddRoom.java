@@ -67,6 +67,7 @@ public class AddRoom extends HttpServlet
 
          poruka = "Successfully added room!";
          obavestenje = "Successfully added room!";
+         
          request.setAttribute ("poruka", poruka);
          request.setAttribute ("obavestenje", obavestenje);
 

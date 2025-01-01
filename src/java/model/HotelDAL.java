@@ -61,12 +61,15 @@ public class HotelDAL
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
 
       return rooms;
    }
 
+   
+   
+   
    public boolean addHotel(Hotel hotel)
    {
       boolean obavestenje = false;
@@ -74,9 +77,7 @@ public class HotelDAL
       try
       {
          Connection cnn = Konekcija.createConnection ();
-
          String insert = "INSERT INTO hotel(name, city, roomCount, parking, stars, imagePath) VALUES(?,?,?,?,?,?)";
-
          PreparedStatement stmt = cnn.prepareStatement (insert);
 
          stmt.setString (1, hotel.getName ());
@@ -90,16 +91,13 @@ public class HotelDAL
          {
             obavestenje = true;
          }
-
          stmt.close ();
          cnn.close ();
-
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
-
       return obavestenje;
    }
 
@@ -110,9 +108,7 @@ public class HotelDAL
       try
       {
          Connection cnn = Konekcija.createConnection ();
-
          PreparedStatement stmt = cnn.prepareCall ("SELECT * FROM hotel ORDER BY stars DESC");
-
          ResultSet rez = stmt.executeQuery ();
 
          while (rez.next ())
@@ -126,15 +122,13 @@ public class HotelDAL
             String imagePath = rez.getString ("imagePath");
 
             Hotel h = new Hotel (idHotel, name, city, roomCount, parking, stars, imagePath);
-
             hoteli.add (h);
          }
       }
       catch (NumberFormatException | SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
-
       return hoteli;
    }
 
@@ -143,8 +137,7 @@ public class HotelDAL
       try
       {
          Connection cnn = Konekcija.createConnection ();
-
-         String update = "UPDATE hotel set name=?, city=?, roomCount=?, parking=?, stars=?";
+         String update = "UPDATE hotel SET name=?, city=?, roomCount=?, parking=?, stars=?";
 
          if (!hotel.getImagePath ().isEmpty ())
          {
@@ -166,15 +159,11 @@ public class HotelDAL
             stmt.setInt (7, hotel.getIdHotel ());
          }
          stmt.setInt (6, hotel.getIdHotel ());
-
          stmt.executeUpdate ();
-
-         stmt.close ();
-         cnn.close ();
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
    }
 
@@ -185,11 +174,8 @@ public class HotelDAL
       try
       {
          String select = "SELECT * FROM hotel WHERE idHotel=?";
-
          PreparedStatement stmt = cnn.prepareStatement (select);
-
          stmt.setInt (1, id);
-
          ResultSet rez = stmt.executeQuery ();
 
          if (rez.next ())
@@ -204,41 +190,37 @@ public class HotelDAL
 
             hotel = new Hotel (idHotel, name, city, roomCount, parking, stars, imagePath);
          }
-
          stmt.close ();
          cnn.close ();
       }
       catch (SQLException e)
       {
-         e.printStackTrace ();
+         e.getMessage();
       }
-
       return hotel;
    }
 
    public boolean deleteHotel(int id)
-   {
+   {             
+       try
+       {
+           if(id > 0)
+           {               
+               String delete = "DELETE FROM hotel WHERE idHotel=?";
 
-      try
-      {
-         String delete = "DELETE FROM hotel WHERE idHotel=?";
-
-         PreparedStatement stmt = this.cnn.prepareStatement (delete);
-
-         stmt.setInt (1, id);
-
-         stmt.execute ();
-
-         stmt.close ();
-
-         return true;
-
-      }
-      catch (SQLException e)
-      {
-         e.printStackTrace ();
-      }
-      return false;
+               try (PreparedStatement stmt = this.cnn.prepareStatement (delete))
+               {
+                   stmt.setInt (1, id);                   
+                   stmt.execute ();
+               }          
+               return true;
+           }
+       }
+       catch (SQLException e)
+       {
+           e.getMessage();
+       }
+       return false;
    }
 
 }

@@ -14,13 +14,13 @@ public class EditHotel extends HttpServlet
 
    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-
+      response.setContentType ("text/html;charset=UTF-8");
    }
 
    @Override
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
-
+      processRequest (request, response);
    }
 
    @Override
@@ -34,9 +34,8 @@ public class EditHotel extends HttpServlet
       int roomCount = Integer.parseInt (request.getParameter ("roomCount"));
       int stars = Integer.parseInt (request.getParameter ("stars"));
       int parking = Integer.parseInt (request.getParameter ("parking"));
-
       Part part = request.getPart ("imagePath");
-      String fileName = (part == null) ? "" : part.getSubmittedFileName ();
+      String imagePath = (part == null) ? "" : part.getSubmittedFileName ();
 
       if (name.isEmpty ())
       {
@@ -81,20 +80,20 @@ public class EditHotel extends HttpServlet
 
       if (idHotel != 0)
       {
-         Hotel hotel = new Hotel ();
-         HotelDAL hotBaza = new HotelDAL (Konekcija.createConnection ());
-
-         hotel.setIdHotel (idHotel);
-         hotel.setName (name);
-         hotel.setCity (city);
-         hotel.setRoomCount (roomCount);
-         hotel.setStars (stars);
-         hotel.setParking (parking);
-         hotel.setImagePath (fileName);
-
          try
          {
-            hotBaza.editHotel (hotel);
+            Hotel hotel = new Hotel ();
+            HotelDAL hotBaza = new HotelDAL (Konekcija.createConnection ());
+
+            hotel.setIdHotel (idHotel);
+            hotel.setName (name);
+            hotel.setCity (city);
+            hotel.setRoomCount (roomCount);
+            hotel.setStars (stars);
+            hotel.setParking (parking);
+            hotel.setImagePath (imagePath);
+
+            hotBaza.editHotel (hotel);            
 
             obavestenje = "Successfully updated hotel!";
             request.setAttribute ("obavestenje", obavestenje);

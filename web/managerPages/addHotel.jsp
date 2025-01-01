@@ -84,8 +84,7 @@
                         <!-- Button  -->
                         <div class="col-md-10 justify-content-center text-center rounded-pill">
                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 rounded-pill shadow-lg" type="submit">Insert</button>
-                        </div> 		
-
+                        </div> 	
                     </div>    
 
 
@@ -105,7 +104,6 @@
 			    </div>
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>

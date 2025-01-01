@@ -10,8 +10,7 @@ public class Hotel {
    private String imagePath;
    Rooms room;
 
-   public Hotel() {
-   }
+   public Hotel() {   }
 
    public Hotel(String name, String city, int roomCount, int parking, int stars, String imagePath, Rooms room) {
       this.name = name;
